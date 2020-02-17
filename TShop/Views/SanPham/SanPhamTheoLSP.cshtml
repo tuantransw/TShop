@@ -1,0 +1,404 @@
+﻿@using TShop.Models
+@model IEnumerable<SANPHAM>
+
+@{
+    ViewBag.Title = "SanPhamTheoLSP";
+    Layout = "~/Views/Shared/Layout/_HomeLayout.cshtml";
+}
+
+<!-- main area start -->
+<div class="main-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 nopadding-right">
+                <aside>
+                    <div class="box_manufacrurer">
+                        <div class="area-title">
+                            <h3>Shop By</h3>
+                        </div>
+                        <ul class="box_list aside-padd">
+                            <li><span>Manufacturer</span></li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 01
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 02
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 03
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 04
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 05
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 06
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 07
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 08
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 09
+                            </li>
+                            <li>
+                                <input type="checkbox">Manufacturers name 10
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <!--aside 1 end-->
+                <aside class="shop-filter aside-padd">
+                    <h3 class="price-title">Price Filter</h3>
+                    <div class="price_filter">
+                        <form action="#" method="get">
+                            <div id="slider-range"></div>
+                            <input type="text" id="amount" readonly>
+                            <input type="submit" value="Filter">
+                        </form>
+                    </div>
+                </aside>
+                <!--aside 2 end-->
+                <aside>
+                    <div class="usefull-product-slide">
+                        <div class="area-title">
+                            <h3>Upsell Products</h3>
+                        </div>
+                        <div class="total-usefull-product carousle-pagi common4 ">
+                            <!-- single-product start -->
+                            <div class="col-xs-12">
+                                <div class="single-product">
+                                    <div class="product-label">
+                                    </div>
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img alt="" src="img/product/product-5.jpg" class="primary-image">
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="new-price">$222.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product end -->
+                            <!-- single-product start -->
+                            <div class="col-xs-12">
+                                <div class="single-product">
+                                    <div class="product-label">
+                                    </div>
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img alt="" src="img/product/product-5.jpg" class="primary-image">
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="new-price">$222.00</span>
+                                            <span class="old-rpice"><del>$250.00</del></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product end -->
+                            <!-- single-product start -->
+                            <div class="col-xs-12">
+                                <div class="single-product">
+                                    <div class="product-label">
+                                    </div>
+                                    <div class="product-img">
+                                        <a href="#">
+                                            <img alt="" src="img/product/product-5.jpg" class="primary-image">
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="new-price">$222.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product end -->
+                        </div>
+                    </div>
+                </aside>
+                <!--aside 3 end-->
+                <aside>
+                    <div class="tag-area">
+                        <div class="area-title">
+                            <h3>Popular Tags</h3>
+                        </div>
+                        <ul class="aside-padd">
+                            <li> <a href="#">html5</a></li>
+                            <li> <a href="#">css3</a></li>
+                            <li> <a href="#">Joomla</a></li>
+                            <li> <a href="#">Jquery</a></li>
+                            <li> <a href="#">css</a></li>
+                            <li> <a href="#">Content</a></li>
+                            <li> <a href="#">clothing</a></li>
+                            <li> <a href="#">shoes</a></li>
+                            <li> <a href="#">gifts</a></li>
+                            <li> <a href="#">electronics</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                <!--aside 4 end-->
+                <aside>
+                    <div class="newsletter-area">
+                        <div class="area-title">
+                            <h3>Newsletter</h3>
+                        </div>
+                        <div class="aside-padd">
+                            <div class="vina-newsletter">
+                                <form method="post" action="#">
+                                    <div class="input-box">
+                                        <label>Sign Up for Our Newsletter:</label>
+                                        <input type="email" placeholder="Email" name="email">
+                                    </div>
+                                    <div class="input-box">
+                                        <input type="submit" class="submit-btn" name="submit" value="Subscribe">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="web-links">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="rss">
+                                            <i class="fa fa-rss"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="ldin">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li><a href="#" class="face"><i class="fa fa-facebook"></i></a></li>
+                                    <li>
+                                        <a href="#" class="google">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <!--aside 5 end-->
+            </div>
+
+            <!--col-md-3-->
+            <div class="col-lg-9 col-md-9 nopadding-left mt-xs-30">
+                <div class="ambit-key">
+                    <div class="col-md-12 pt40">
+                        <ol class="breadcrumbs">
+                            <li class="home"><a href="@Url.Action("Index","TrangChu")" title="Về trang chủ">Trang chủ</a></li>
+                            <li class="active"></li>
+                        </ol>
+                        <div class="shop-banner mt20 mb20">
+                            <a href="#"><img src="img/clothing.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="shop-product-area">
+                        <!-- area title start -->
+                        <div class="col-sm-12">
+                            <div class="area-title bdr">
+                                <h2>Clothing</h2>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- area title end -->
+                        <div class="short-area mt20">
+                            <form id="sort_count" name="sort_count" method="post" action="#">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="sort-by">
+                                            <label>Sort by:</label>
+                                            <div class="select-sort-by">
+                                                <select class="inputbox" name="order" id="order">
+                                                    <option selected="selected">Name</option>
+                                                    <option value="1">Predefined</option>
+                                                    <option value="2">Price</option>
+                                                    <option value="3">Date</option>
+                                                    <option value="5">Rating</option>
+                                                    <option value="6">Popular</option>
+                                                </select>
+                                                <a href="#"><i class="fa fa-long-arrow-up"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 text-lg-right text-md-right">
+                                        <div class="limiter">
+                                            <label>Show:</label>
+                                            <div class="select-limiter">
+                                                <select class="inputbox" name="limit" id="limit">
+                                                    <option value="99999">All</option>
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="15">15</option>
+                                                    <option selected="selected" value="16">16</option>
+                                                    <option value="20">20</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- product area start-->
+                        <div class="row row-margin2">
+                            <!-- single-product start -->
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xl-3 col-lg-4  col-md-6 col-sm-6 col-12  col-padd">
+                                    <div class="single-product">
+                                        <div class="product-label">
+                                            <div class="new"></div>
+                                        </div>
+                                        <div class="product-img">
+                                            <a href="#">
+                                                <img class="primary-image" src="img/product/books1.jpg" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <h2 class="product-name"><a href="#">@item.TenSP</a></h2>
+                                            <div class="rating">
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star-o"></i></a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="new-price">@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-content2">
+                                            <h2 class="product-name"><a href="#">@item.TenSP</a></h2>
+                                            <div class="rating">
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star"></i></a>
+                                                <a href="#"><i class="fa fa-star-o"></i></a>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="new-price">@donGia</span>
+                                            </div>
+                                            <div class="button-container">
+                                                <a title="Add to Cart" href="#" class="button cart_button">
+                                                    <span>Mua ngay</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <ul class="add-to-links">
+                                            <li>
+                                                <div class="wishlist">
+                                                    <a title="Thêm vào danh sách yêu thích" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="view-products">
+                                                    <a title="Chi tiết sản phẩm" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                            <!-- single-product end -->
+
+                        </div>
+                    </div>
+                    <!--shop product area end-->
+                    <div class="col-lg-12">
+                        <div class="pagination pt30">
+                            <ul>
+                                <li class="pagination-active"><a>1</a></li>
+                                <li><a title="2" href="#" class="">2</a></li>
+                                <li><a title="»" href="#" class="next">»</a></li>
+                                <li><a title="End" href="#" class="">End</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--brand crasoule-area-start-->
+                    <div class="brand-crasoule-area featur-padd">
+                        <!-- area title start -->
+                        <div class="area-title bdr mt20">
+                            <h2>Brand & Clients</h2>
+                        </div>
+                        <!-- area title end -->
+                        <div class="total-brand menu-carousel carousel-btn-2 carousel-btn mt10 mb20">
+                            <div class="single-brand">
+                                <img src="img/brand1.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand2.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand3.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand4.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand1.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand2.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand3.png" alt="">
+                            </div>
+                            <div class="single-brand">
+                                <img src="img/brand4.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!--brand crasoule-area-end-->
+                </div>
+                <!--ambit-key-->
+            </div>
+            <!--col-md-9-->
+        </div>
+        <!--row-->
+    </div>
+    <!--container-->
+</div>
+<!-- main area end -->

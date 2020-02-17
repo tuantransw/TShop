@@ -1,0 +1,9 @@
+﻿@using TShop.Models
+@model IEnumerable<SANPHAM>
+
+<ul>
+    @foreach (var item in Model.GroupBy(n => n.NHASANXUAT))
+    {
+        <li><a href="shop.html">@item.Key.TenNSX</a></li>
+    }
+</ul>

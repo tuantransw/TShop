@@ -1,0 +1,37 @@
+﻿@using TShop.Models;
+@model IEnumerable<LOAISANPHAM>
+
+<aside>
+    <div class="left-category-menu">
+        <div class="left-product-cat">
+            <div class="category-heading">
+                <h2>Danh mục sản phẩm</h2>
+            </div>
+            <!-- category-menu-list start -->
+            <div class="category-menu-list">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <a href="@Url.Action("SanPhamTheoLSP","SanPham",new {MaLSP=item.MaLSP})"><img src="@Url.Content("~/Content/Icon/"+ item.HinhAnh)" alt="" /><span>@item.TenLSP</span><i class="fa fa-angle-right"></i></a>
+                            <!-- cat-left mega menu start -->
+                            <div class="cat-left-drop-menu big-ldrop">
+                                <div class="cat-left-drop-menu-left sub-drop">
+                                    <a class="menu-item-heading" href="shop.html">Dung Lượng @item.TenLSP</a>
+                                    @Html.Action("DanhMucSanPhamConPartial", "LoaiSanPham", new { MaLSPCha = item.MaLSP })
+                                </div>
+                                <div class="cat-left-drop-menu-left sub-drop">
+                                    <a class="menu-item-heading" href="shop.html">Hãng sản xuất</a>
+                                    @Html.Action("DanhMucSanPhamTheoNSXPartial", "LoaiSanPham", new {MaLSP=item.MaLSP })
+                                </div>
+                            </div>
+                            <!-- cat-left mega menu end -->
+                        </li>
+                    }       
+                </ul>
+            </div>
+            <!-- category-menu-list end -->
+        </div>
+    </div>
+</aside>
+<!--aside 1 end-->

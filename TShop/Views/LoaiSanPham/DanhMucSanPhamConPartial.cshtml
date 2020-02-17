@@ -1,0 +1,16 @@
+﻿@using TShop.Models;
+@model IEnumerable<LOAISANPHAM>
+@{
+    if ((int)ViewBag.SoLuong > 0)
+    {
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("SanPhamTheoLSP","SanPham",new {MaLSP=item.MaLSP})">@item.TenLSP</a>
+                @Html.Action("DanhMucSanPhamConPartial", "LoaiSanPham", new { MaLSPCha = item.MaLSP })
+            </li>
+        }
+    </ul>
+    }
+}
