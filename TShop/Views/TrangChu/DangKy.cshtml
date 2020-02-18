@@ -1,0 +1,76 @@
+﻿@using TShop.Models
+@model KHACHHANG
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/Layout/_HomeLayout.cshtml";
+}
+<div class="my-account-area pt50 pb50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                @using (Html.BeginForm("DangNhap", "TrangChu"))
+                {
+                    
+                    <div class="form-fields">
+                        <h2>Đăng nhập</h2>
+                        <p>
+                            <label>Địa chỉ Email <span class="required">*</span></label>
+                            <input name="textTDN" type="text">
+                        </p>
+                        <p>
+                            <label>Mật khẩu <span class="required">*</span></label>
+                            <input name="textMK" type="password">
+                        </p>
+                    </div>
+                    <div class="form-action">
+                        <p class="lost_password"><a href="#">Bạn quên mật khẩu ?</a></p>
+                        <input type="submit" value="Đăng nhập">
+                        <label>
+                            <input type="checkbox"> Nhớ mật khẩu
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12">
+                @using (Html.BeginForm("DangKy","TrangChu"))
+                {
+
+                    <div class="form-fields">
+                        <h2>Tạo tài khoản</h2>
+                        <p>
+                            <label>Họ Tên <span class="required">*</span></label>
+                            @Html.TextBox("TenKH")
+                        </p>
+                        <p>
+                            <label>Địa chỉ <span class="required">*</span></label>
+                            @Html.TextBox("DiaChi")
+                        </p>
+                        <p>
+                            <label>Số điện thoại <span class="required">*</span></label>
+                            @Html.TextBox("SoDienThoai")
+                        </p>
+                        <p>
+                            <label>Email <span class="required">*</span></label>
+                            @Html.TextBox("Email")
+                        </p>
+                        <p>
+                            <label>Mật khẩu <span class="required">*</span></label>
+                            @Html.Password("MatKhau")
+                        </p>
+
+                        @*<p>
+                                <label>Nhập lại mật khẩu <span class="required">*</span></label>
+                                @Html.Password("MatKhau")
+                            </p>*@
+                    </div>
+                    <div class="form-action">
+                        <input type="submit" value="Đăng ký">
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@using TShop.Models
+
+
+<div class="header-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-12">
+                <div class="single-drop">
+                    <nav>
+                        <ul>
+                            <li>
+                                <label><i class="fa fa-cog"></i>Tiền tệ: </label><a class="xero" href=""><span>VNĐ</span><i class="fa fa-angle-down"></i></a>
+                                @*<ul>
+                                        <li><a href="#">USD</a></li>
+                                    </ul>*@
+                            </li>
+                            <li>
+                                <label><i class="fa fa-globe"></i>Ngôn ngữ: </label><a href=""><span>Tiếng Việt</span><i class="fa fa-angle-down"></i></a>
+                                @*<ul>
+                                        <li><a href="#">Brazilian</a></li>
+                                        <li><a href="#">English</a></li>
+                                        <li><a href="#">French</a></li>
+                                        <li><a href="#">German</a></li>
+                                        <li><a href="#">Russian</a></li>
+                                        <li><a href="#">Spanish</a></li>
+                                    </ul>*@
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6 col-12">
+                <div class="single-menu">
+                    <nav>
+                        <ul>
+                            <li><a href="my-account.html">Tài khoản của tôi</a></li>
+                            <li><a href="checkout.html">Đơn mua</a></li>
+                            @if (Session["TaiKhoan"] != null /*&& Session["TaiKhoan"] != ""*/)
+                            {
+                                KHACHHANG KH = (KHACHHANG)Session["TaiKhoan"];
+                                <li><a>Chào @KH.TenKH :))</a></li>
+                                <li><a href="@Url.Action("DangXuat","TrangChu")">Đăng xuất</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("DangKy","TrangChu")">Đăng kí</a></li>
+                                <li><a class="lastbdr" href="@Url.Action("DangKy","TrangChu")">Đăng nhập</a></li>
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

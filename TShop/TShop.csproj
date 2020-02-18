@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Next, Version=3.2.1.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.3.2.1\lib\net472\BCrypt.Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -517,6 +520,8 @@
     <Content Include="Views\SanPham\ChiTietSanPham.cshtml" />
     <Content Include="Views\SanPham\SanPhamTheoLSP.cshtml" />
     <Content Include="Views\SanPham\SanPhamTheoLSPVaNSX.cshtml" />
+    <Content Include="Views\TrangChu\DangKy.cshtml" />
+    <Content Include="Views\Shared\Layout\_HeaderTop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
