@@ -2,8 +2,12 @@
 @model IEnumerable<SANPHAM>
 
 <ul>
+
     @foreach (var item in Model.GroupBy(n => n.NHASANXUAT))
     {
-        <li><a href="shop.html">@item.Key.TenNSX</a></li>
+        if(item.Key != null)
+        {
+            <li><a href="@Url.Action("SanPhamTheoLSPVaNSX","SanPham",new { MaLSP=ViewBag.MaLSP , MaNSX=item.Key.MaNSX})">@item.Key.TenNSX</a></li>
+        }
     }
 </ul>

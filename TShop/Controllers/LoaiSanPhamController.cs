@@ -26,11 +26,14 @@ namespace TShop.Controllers
             ViewBag.SoLuong = DanhMucSanPhamCon.Count();
             return PartialView(DanhMucSanPhamCon);
         }
-        public ActionResult DanhMucSanPhamTheoNSXPartial(int MaLSP)
+        public ActionResult DanhMucSanPhamTheoNSXPartial(int? MaLSP)
         {
-            var DanhMucSanPhamTheoNSX = db.SANPHAMs.Where(n=>n.MaLSP==MaLSP).ToList();
-           
-            return PartialView(DanhMucSanPhamTheoNSX);
+            var DanhMucSanPhamTheoNSX = db.SANPHAMs.Where(n => n.MaLSP == 8).ToList();
+            //var DanhMucSanPhamTheoNSX = db.SANPHAMs.Where(n => n.MaLSP == MaLSP).GroupBy(n => n.MaNSX).ToList();
+            var sPCha = from sP in db.SANPHAMs join lSP in db.LOAISANPHAMs on sP.MaLSP equals lSP.MaLSP where sP.Xoa == false && lSP.MaLSPGoc == MaLSP select sP;
+            ViewBag.MaLSP = MaLSP;
+            var sPCha1 = sPCha.ToList();
+            return PartialView(sPCha);
         }
 
 

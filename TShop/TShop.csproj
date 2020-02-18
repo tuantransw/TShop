@@ -516,6 +516,7 @@
     <Content Include="Views\LoaiSanPham\DanhMucSanPhamTheoNSXPartial.cshtml" />
     <Content Include="Views\SanPham\ChiTietSanPham.cshtml" />
     <Content Include="Views\SanPham\SanPhamTheoLSP.cshtml" />
+    <Content Include="Views\SanPham\SanPhamTheoLSPVaNSX.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
