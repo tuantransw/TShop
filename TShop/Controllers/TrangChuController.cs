@@ -31,18 +31,14 @@ namespace TShop.Controllers
         }
        
         [HttpGet]
-        public ActionResult DangKy()
+        public ActionResult TaiKhoan()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult DangKy(KHACHHANG KH, FormCollection f)
+        public ActionResult TaiKhoan(KHACHHANG KH, FormCollection f)
         {
-            if (KH == null)
-            {
-                return View();
-            }
-            else
+            if (ModelState.IsValid)
             {
                 KHACHHANG kh = db.KHACHHANGs.SingleOrDefault(n => n.Email == KH.Email);
                 KHACHHANG kh1 = db.KHACHHANGs.SingleOrDefault(n => n.SoDienThoai == KH.SoDienThoai);
@@ -52,12 +48,19 @@ namespace TShop.Controllers
 
                     KH.MatKhau = passwordHash;
 
-
+                    
                     db.KHACHHANGs.Add(KH);
                     db.SaveChanges();
+                    ViewBag.ThongBao = "Tạo tài khoản thành công";
+                    Session["TaiKhoan"] = KH;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.ThongBao = "Số điện thoại hoặc email đã được sử dụng";
+                    return View();
                 }
             }
-
             return View();
         }
         [HttpPost]
@@ -67,18 +70,20 @@ namespace TShop.Controllers
             string tMK = f["textMK"].ToString();
        
             KHACHHANG KH = db.KHACHHANGs.SingleOrDefault(n => n.Email == tTDN);
+            if (KH == null)
+            {
+                ViewBag.ThongBao1 = "Tên tài khoản hoặc mật khẩu không chính xác";
+                return View("TaiKhoan");
+            }
             string passwordHash = KH.MatKhau;
             if (BCrypt.Net.BCrypt.Verify(tMK, passwordHash) == true)
             {
                 Session["TaiKhoan"] = KH;
+          
                 return RedirectToAction("Index");
             }
-            //if (KH != null)
-            //{
-            //    Session["TaiKhoan"] = KH;
-            //    return RedirectToAction("Index");
-            //}
-            return RedirectToAction("Index");
+            ViewBag.ThongBao1 = "Tên tài khoản hoặc mật khẩu không chính xác";
+            return View("TaiKhoan");
         }
 
  
@@ -86,6 +91,21 @@ namespace TShop.Controllers
         {
             Session["TaiKhoan"] = null;
             return RedirectToAction("Index");
+        }
+
+        public ActionResult abc()
+        {
+            
+            return View();
+        }
+        [HttpPost]
+        public ActionResult abc(KHACHHANG KH)
+        {
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            return View();
         }
     }
 }

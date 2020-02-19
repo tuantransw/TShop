@@ -1,7 +1,7 @@
 ﻿@using TShop.Models
 @model KHACHHANG
 @{
-    ViewBag.Title = "DangKy";
+    ViewBag.Title = "TaiKhoan";
     Layout = "~/Views/Shared/Layout/_HomeLayout.cshtml";
 }
 <div class="my-account-area pt50 pb50">
@@ -10,7 +10,7 @@
             <div class="col-lg-6 col-md-6 col-12">
                 @using (Html.BeginForm("DangNhap", "TrangChu"))
                 {
-                    
+
                     <div class="form-fields">
                         <h2>Đăng nhập</h2>
                         <p>
@@ -21,7 +21,10 @@
                             <label>Mật khẩu <span class="required">*</span></label>
                             <input name="textMK" type="password">
                         </p>
+
+                        <h3 style="color:tomato">@ViewBag.ThongBao1</h3>
                     </div>
+
                     <div class="form-action">
                         <p class="lost_password"><a href="#">Bạn quên mật khẩu ?</a></p>
                         <input type="submit" value="Đăng nhập">
@@ -33,32 +36,39 @@
             </div>
 
             <div class="col-lg-6 col-md-6 col-12">
-                @using (Html.BeginForm("DangKy","TrangChu"))
+                @using (Html.BeginForm("TaiKhoan", "TrangChu"))
                 {
-
+                    @Html.AntiForgeryToken()
                     <div class="form-fields">
                         <h2>Tạo tài khoản</h2>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <p>
                             <label>Họ Tên <span class="required">*</span></label>
-                            @Html.TextBox("TenKH")
+
+                            @Html.EditorFor(model => model.TenKH)
+                            @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
                         </p>
                         <p>
                             <label>Địa chỉ <span class="required">*</span></label>
-                            @Html.TextBox("DiaChi")
+                            @Html.EditorFor(model => model.DiaChi)
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
                         </p>
                         <p>
                             <label>Số điện thoại <span class="required">*</span></label>
-                            @Html.TextBox("SoDienThoai")
+                            @Html.EditorFor(model => model.SoDienThoai)
+                            @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
                         </p>
                         <p>
                             <label>Email <span class="required">*</span></label>
-                            @Html.TextBox("Email")
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </p>
                         <p>
                             <label>Mật khẩu <span class="required">*</span></label>
-                            @Html.Password("MatKhau")
+                            @Html.PasswordFor(model => model.MatKhau)
+                            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
                         </p>
-
+                        <h3 style="color:tomato">@ViewBag.ThongBao</h3>
                         @*<p>
                                 <label>Nhập lại mật khẩu <span class="required">*</span></label>
                                 @Html.Password("MatKhau")
@@ -74,3 +84,5 @@
         </div>
     </div>
 </div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
