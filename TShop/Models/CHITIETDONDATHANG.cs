@@ -15,8 +15,8 @@ namespace TShop.Models
     public partial class CHITIETDONDATHANG
     {
         public int MaDDH { get; set; }
-        public int MaSp { get; set; }
-        public string TenSp { get; set; }
+        public int MaSP { get; set; }
+        public string TenSP { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<decimal> DonGia { get; set; }
     

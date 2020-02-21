@@ -13,8 +13,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-12 nopadding-right">
-               @*@Html.Partial("~/Views/LoaiSanPham/DanhMucSanPhamConPartial.cshtml",)*@
-                @Html.Action("DanhMucSanPhamPartial","LoaiSanPham")
+                @*@Html.Partial("~/Views/LoaiSanPham/DanhMucSanPhamConPartial.cshtml",)*@
+                @Html.Action("DanhMucSanPhamPartial", "LoaiSanPham")
                 <!--aside 1 end-->
                 <aside>
                     <div class="tag-area">
@@ -236,7 +236,7 @@
                                                             <div class="new"></div>
                                                         </div>
                                                         <div class="product-img">
-                                                            <a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">
+                                                            <a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})">
                                                                 <img class="primary-image" src="@Url.Content("~/Content/HinhAnh/"+item.HinhAnh)" alt="" />
                                                             </a>
                                                         </div>
@@ -254,7 +254,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-content2">
-                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP</a></h2>
+                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})">@item.TenSP</a></h2>
                                                             <div class="rating">
                                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -266,8 +266,8 @@
                                                                 <span class="new-price">@donGia</span>
                                                             </div>
                                                             <div class="button-container">
-                                                                <a title="Thêm vào giỏ hàng" href="#" class="button cart_button">
-                                                                    <span>Thêm vào giỏ hàng</span>
+                                                                <a title="Thêm vào giỏ hàng" href="@Url.Action("ThemGioHang", "GioHang", new { @MaSP = item.MaSP })" class="button cart_button">
+                                                                    <span>Mua ngay</span>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -279,7 +279,7 @@
                                                             </li>
                                                             <li>
                                                                 <div class="view-products">
-                                                                    <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                                                    <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -302,12 +302,12 @@
                                                             <div class="new"></div>
                                                         </div>
                                                         <div class="product-img">
-                                                            <a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">
+                                                            <a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})">
                                                                 <img class="primary-image" src="@Url.Content("~/Content/HinhAnh/" + item.HinhAnh)" alt="" />
                                                             </a>
                                                         </div>
                                                         <div class="product-content">
-                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP</a></h2>
+                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})">@item.TenSP</a></h2>
                                                             <div class="rating">
                                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -320,7 +320,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-content2">
-                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP</a></h2>
+                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})">@item.TenSP</a></h2>
                                                             <div class="rating">
                                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -332,8 +332,8 @@
                                                                 <span class="new-price">@donGia</span>
                                                             </div>
                                                             <div class="button-container">
-                                                                <a title="Thêm vào giỏ hàng" href="#" class="button cart_button">
-                                                                    <span>Thêm vào giỏ hàng</span>
+                                                                <a title="Thêm vào giỏ hàng" href="@Url.Action("ThemGioHang", "GioHang", new { @MaSP = item.MaSP })" class="button cart_button">
+                                                                    <span>Mua ngay</span>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -345,17 +345,17 @@
                                                             </li>
                                                             <li>
                                                                 <div class="view-products">
-                                                                    <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                                                    <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
                                                                 </div>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             }
-                              
+
                                         </div>
                                     </div>
-                                </div>      
+                                </div>
                             </div>
                         </div>
                         <!-- product section end -->

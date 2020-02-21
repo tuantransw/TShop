@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7f0b1dea79784f6bb41f290b8e5d6417" Name="Diagram1">
-        <EntityTypeShape EntityType="TShopModel.CHITIETDONDATHANG" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.CHITIETPHIEUNHAP" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.DONDATHANG" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.LOAISANPHAM" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.NHASANXUAT" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.PHIEUNHAP" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+      <Diagram DiagramId="ef6c5010aaf14364af0678a7f4ca01c8" Name="Diagram1">
+        <EntityTypeShape EntityType="TShopModel.CHITIETDONDATHANG" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.CHITIETPHIEUNHAP" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.DONDATHANG" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.LOAISANPHAM" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.NHASANXUAT" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.PHIEUNHAP" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TShopModel.SANPHAM" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TShopModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TShopModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="TShopModel.FK_CHITIETDONDATHANG_DONDATHANG" ManuallyRouted="false" />
         <AssociationConnector Association="TShopModel.FK_CHITIETDONDATHANG_SANPHAM" ManuallyRouted="false" />
         <AssociationConnector Association="TShopModel.FK_CHITIETPHIEUNHAP_PHIEUNHAP" ManuallyRouted="false" />

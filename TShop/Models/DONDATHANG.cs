@@ -26,6 +26,8 @@ namespace TShop.Models
         public Nullable<int> MaKH { get; set; }
         public string TinhTrangGiaoHang { get; set; }
         public Nullable<bool> DaThanhToan { get; set; }
+        public Nullable<bool> HuyDatHang { get; set; }
+        public Nullable<bool> Xoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }

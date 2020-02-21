@@ -1,0 +1,192 @@
+﻿@using TShop.Models
+@model ITEMGIOHANG
+
+@{
+    ViewBag.Title = "SuaGioHang";
+    Layout = "~/Views/Shared/Layout/_HomeLayout.cshtml";
+}
+@{
+    List<ITEMGIOHANG> listGIOHANG = ViewBag.GioHang as List<ITEMGIOHANG>;
+}
+<style>
+    .c-price {
+        color: #65c178;
+        font-size: 30px;
+        font-weight: 700;
+        width: 21.4%;
+    }
+    .area-title.bdr > h2{
+        border-bottom: 1px solid #ededed;
+        margin: 0;
+        padding-bottom: 10px;
+        margin-top: -30px;
+    }
+</style>
+@if (Model == null)
+{
+    <div style="padding-bottom:300px;margin-top:50px;padding-left:100px;" class="area-title bdr">
+        <h2 style="text-transform:uppercase; color:inherit;font-weight: 700;font-size: 24px; line-height: 33px;">Giỏ hàng</h2>
+        <span>Không có sản phẩm nào, quay lại cửa hàng để tiếp tục mua sắm.</span>
+
+    </div>
+
+}
+else
+{
+
+    <!--shoping cart area start-->
+    <div class="shoping-cart-area pt50 pb50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="area-title bdr">
+                        <h2>Chi tiết giỏ hàng </h2>
+                    </div>
+                    <div class="table-area">
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr class="c-head">
+                                        <th></th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng tiền</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                @foreach (var item in listGIOHANG)
+                                {
+                                    if (Model.MaSP == item.MaSP)
+                                    {
+                                        using (Html.BeginForm("CapNhatGioHang", "GioHang"))
+                                        {
+
+                                            <tr>
+                                                <td class="c-img">
+                                                    <a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})"><img src="@Url.Content("~/Content/HinhAnh/"+item.HinhAnh)" alt=""></a>
+                                                </td>
+                                                <td class="c-name">
+                                                    <a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">@item.TenSP @Html.Hidden("MaSP", item.MaSP)</a><br>
+                                                </td>
+                                                <td class="c-price"> @item.DonGia.ToString("#,##") VNĐ</td>
+                                                <td class="c-qty"><input type="number" id="SoLuong" name="SoLuong" min="1" max="100" value="@item.SoLuong"></td>
+                                                <td class="c-price">@item.ThanhTien.ToString("#,##") VNĐ</td>
+
+
+
+                                                @*<td><input class="button c_button c-up" type="submit" value="Cập nhật" /></td>*@
+                                                <td>
+
+                                                    <!-- form elements -->
+                                                    @*<a href="#" onclick="document.getElementById('myform').submit()">Cập nhật</a>*@
+                                                    <a><input type="submit" value="Cập nhật" /></a>
+                                                </td>
+
+                                                <td class="trash-btn">
+                                                    <a class="btn-remove" href="@Url.Action("XoaGioHang","GioHang",new { @MaSp = item.MaSP })"></a>
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td class="c-img">
+                                                <a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})"><img src="@Url.Content("~/Content/HinhAnh/"+item.HinhAnh)" alt=""></a>
+                                            </td>
+                                            <td class="c-name">
+                                                <a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">@item.TenSP </a><br>
+                                                @*<span class="c-size"></span>
+                                                    <span class="c-color">color : green</span>*@
+                                            </td>
+                                            <td class="c-price"> @item.DonGia.ToString("#,##") VNĐ</td>
+                                            <td class="c-qty"><span style="margin-left: 10px;">@item.SoLuong</span></td>
+                                            @*<td class="c-qty"><input type="number" id="quantity" name="SoLuong" min="1" max="100" value="@item.SoLuong"></td>*@
+                                            <td class="c-price">@item.ThanhTien.ToString("#,##") VNĐ</td>
+                                            <td>@Html.ActionLink("Sửa", "SuaGioHang", new { @MaSp = item.MaSP })</td>
+                                            <td class="trash-btn">
+                                                <a class="btn-remove" href="@Url.Action("XoaGioHang","GioHang",new { @MaSp = item.MaSP })"></a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="discount-process-area row">
+                        <div class="col-lg-4 col-md-4 col-12">
+
+                            <a class="button c_button dis-left" href="@Url.Action("Index","TrangChu")" title="Continue Shopinng">
+                                <span>Tiếp tục mua hàng</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="single-dis">
+                                <div class="discount">
+                                    <h2>Mã giảm giá</h2>
+                                    <div class="discount-form">
+                                        <form action="#" method="post">
+                                            <label>Nhập vào mã giảm giá của bạn</label>
+                                            <div class="input-box">
+                                                <input type="text" value="" name="rabatt" class="inputbox">
+                                            </div>
+                                            <div class="coupon_submit">
+                                                <a class="button c_button" href="#" title="Continue Shopinng">
+                                                    <span>Áp dụng</span>
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="subtotal-area">
+                                <table class="shop_subtotal">
+                                    <tbody>
+                                        <tr>
+                                            <td class="s-total">
+                                                Tổng
+                                            </td>
+                                            <td>
+                                                <span class="s-price">@ViewBag.TongTien.ToString("#,##") VNĐ</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="s-total">
+                                            <td>
+                                                <strong>Tổng cộng</strong>
+                                            </td>
+                                            <td>
+                                                <strong><span class="s-price">@ViewBag.TongTien.ToString("#,##") VNĐ</span></strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="clear"></div>
+                                <a class="button c_button" href="@Url.Action("TienHanhDatHang","GioHang")" title="Process To checkout">
+                                    <span>Tiến hành đặt hàng</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--shoping cart area end-->
+
+}
+
+

@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TShop.Models;
+using PagedList;
 namespace TShop.Controllers
 {
     public class SanPhamController : Controller
@@ -26,7 +27,7 @@ namespace TShop.Controllers
             }
             return View(sp);
         }
-        public ActionResult SanPhamTheoLSP(int? MaLSP)
+        public ActionResult SanPhamTheoLSP(int? MaLSP,int? Page)
         {
             if (MaLSP == null)
             {
@@ -61,9 +62,18 @@ namespace TShop.Controllers
             {
                 return HttpNotFound();
             }
-            return View(sPCha);
+            // Chức năng phân trang
+            // Số sản phẩm trên trang
+            int PageSize = 3;
+            // Trang hiện tại
+            int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
+
+            ViewBag.MaLSP = MaLSP;
+            LOAISANPHAM lsp = db.LOAISANPHAMs.Single(n => n.MaLSP == MaLSP);
+            ViewBag.TenLSP = lsp.TenLSP;
+            return View(sPCha.OrderBy(n => n.MaSP).ToPagedList(PageNumber, PageSize));
         }
-        public ActionResult SanPhamTheoLSPVaNSX(int? MaLSP,int? MaNSX)
+        public ActionResult SanPhamTheoLSPVaNSX(int? MaLSP,int? MaNSX, int? Page)
         {
             if (MaLSP == null||MaNSX == null)
             {
@@ -81,7 +91,19 @@ namespace TShop.Controllers
             {
                 return HttpNotFound();
             }
-            return View(sP1);
+            // Chức năng phân trang
+            // Số sản phẩm trên trang
+            int PageSize = 3;
+            // Trang hiện tại
+            int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
+
+            ViewBag.MaLSP = MaLSP;
+            ViewBag.MaNSX = MaNSX;
+            NHASANXUAT nsx = db.NHASANXUATs.Single(n => n.MaNSX == MaNSX);
+            ViewBag.NSX = nsx.TenNSX;
+            LOAISANPHAM lsp =db.LOAISANPHAMs.Single(n => n.MaLSP == MaLSP);
+            ViewBag.TenLSP = lsp.TenLSP;
+            return View(sP1.OrderBy(n=>n.MaSP).ToPagedList(PageNumber,PageSize));
         }
     }
 }

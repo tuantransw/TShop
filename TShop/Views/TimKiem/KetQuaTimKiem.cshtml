@@ -1,10 +1,12 @@
-﻿@using TShop.Models
+﻿
+@using TShop.Models
 @using PagedList.Mvc;
 @model PagedList.IPagedList<SANPHAM>
 @{
-    ViewBag.Title = "SanPhamTheoLSP";
+    ViewBag.Title = "KetQuaTimKiem";
     Layout = "~/Views/Shared/Layout/_HomeLayout.cshtml";
 }
+
 
 <!-- main area start -->
 <div class="main-area">
@@ -178,7 +180,7 @@
                     <div class="col-md-12 pt40">
                         <ol class="breadcrumbs">
                             <li class="home"><a href="@Url.Action("Index","TrangChu")" title="Về trang chủ">Trang chủ</a></li>
-                            <li class="active">@ViewBag.TenLSP</li>
+                            <li class="active">Tìm kiếm</li>
                         </ol>
                         <div class="shop-banner mt20 mb20">
                             <a href="#"><img src="~/Content/img/clothing.jpg" alt=""></a>
@@ -189,12 +191,11 @@
                         <!-- area title start -->
                         <div class="col-sm-12">
                             <div class="area-title bdr">
-                                <h2>@ViewBag.TenLSP</h2>
+                                <h2>Tìm kiếm</h2>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <!-- area title end -->
-                        
                         <!-- product area start-->
                         <div class="row row-margin2">
                             <!-- single-product start -->
@@ -268,11 +269,11 @@
                                 {
                                     if (i == Model.PageNumber)
                                     {
-                                        <li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>
+                                        <li class="pagination-active"><a title="@i" href="@Url.Action("KetQuaTimKiem","TimKiem",new {Page = i,@TuKhoa = ViewBag.TuKhoa})" class="">@i</a></li>
                                     }
                                     else
                                     {
-                                        <li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>
+                                        <li><a title="@i" href="@Url.Action("KetQuaTimKiem","TimKiem",new {Page = i,@TuKhoa = ViewBag.TuKhoa})" class="">@i</a></li>
                                     }
 
 

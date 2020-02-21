@@ -34,7 +34,7 @@
                     <nav>
                         <ul>
                             <li><a href="my-account.html">Tài khoản của tôi</a></li>
-                            <li><a href="checkout.html">Đơn mua</a></li>
+                            <li><a href="@Url.Action("XemGioHang","GioHang")">Đơn mua</a></li>
                             @if (Session["TaiKhoan"] != null /*&& Session["TaiKhoan"] != ""*/)
                             {
                                 KHACHHANG KH = (KHACHHANG)Session["TaiKhoan"];

@@ -55,6 +55,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,8 +137,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -146,12 +154,14 @@
     <Compile Include="Models\DONDATHANG.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ITEMGIOHANG.cs" />
     <Compile Include="Models\KHACHHANG.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAISANPHAM.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Meta\KHACHHANG.cs" />
     <Compile Include="Models\ModelTShop.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,12 +187,6 @@
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SANPHAM.cs">
-      <DependentUpon>ModelTShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ModelTShop.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -462,26 +466,10 @@
     <Content Include="Content\js\vendor\jquery-1.11.3.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.8.3.min.js" />
     <Content Include="Content\js\wow.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModelTShop.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelTShop.Context.cs</LastGenOutput>
-      <DependentUpon>ModelTShop.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModelTShop.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelTShop.edmx</DependentUpon>
-      <LastGenOutput>ModelTShop.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\ModelTShop.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelTShop.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelTShop.edmx.diagram">
-      <DependentUpon>ModelTShop.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -494,8 +482,25 @@
     <Content Include="Content\fonts\Pe-icon-7-stroke.eot" />
     <Content Include="Content\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Content\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Models\ModelTShop.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTShop.edmx</DependentUpon>
+      <LastGenOutput>ModelTShop.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelTShop.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTShop.edmx</DependentUpon>
+      <LastGenOutput>ModelTShop.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ModelTShop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTShop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelTShop.edmx.diagram">
+      <DependentUpon>ModelTShop.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -519,6 +524,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Layout\_HomeLayout.cshtml" />
     <Content Include="Views\TrangChu\abc.cshtml" />
+    <Content Include="Views\GioHang\XemGioHang.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\GioHang\ThongBao.cshtml" />
+    <Content Include="Views\GioHang\SuaGioHang.cshtml" />
+    <Content Include="Views\GioHang\ThongBao1.cshtml" />
+    <Content Include="Views\GioHang\TienHanhDatHang.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiem.cshtml" />
+    <Content Include="Views\TimKiem\KetQuaTimKiemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

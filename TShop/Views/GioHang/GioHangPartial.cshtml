@@ -1,0 +1,41 @@
+﻿@using TShop.Models
+@model List<ITEMGIOHANG>
+
+
+@if (Model == null)
+{
+<div class="shopping-cart expand">
+    <a href="@Url.Action("XemGioHang","GioHang")"><span>Giỏ hàng(@ViewBag.TongSoLuong)</span></a>
+    
+</div>
+}
+else
+{
+    <div class="shopping-cart expand">
+        <a href="@Url.Action("XemGioHang","GioHang")"><span>Giỏ hàng(@ViewBag.TongSoLuong)</span></a>
+        <div class="restrain small-cart-content">
+            <ul class="cart-list">
+                @foreach (var item in Model)
+                {
+                    
+                    <li>
+                        <a class="sm-cart-product" href="@Url.Action("ChiTietSanPham","SanPham",new {@MaSP=item.MaSP })">
+                            <img src="@Url.Content("~/Content/HinhAnh/" + item.HinhAnh)" alt="" style="width:50px; height:50px">
+                        </a>
+                        <div class="small-cart-detail">
+                            <a class="remove" href="@Url.Action("XoaGioHang","GioHang",new { @MaSp = item.MaSP })"><i class="fa fa-times-circle-o"></i></a>
+                            <a href="@Url.Action("SuaGioHang","GioHang",new { @MaSP=item.MaSP})" class="edit-btn"><img src="~/Content/img/btn_edit.gif" alt="Edit Button"></a>
+                            <a class="small-cart-name" href="@Url.Action("ChiTietSanPham","SanPham",new {@MaSP=item.MaSP })">@item.TenSP.Substring(0, 10) ...</a>
+                            <span class="quantitys"><strong>@item.SoLuong</strong>x<span>@item.DonGia.ToString("#,##") VNĐ</span></span>
+                        </div>
+                    </li>
+                }
+
+            </ul>
+            <p class="total">Tổng tiền: <span class="amount">@ViewBag.TongTien.ToString("#,##") VNĐ</span></p>
+            <p class="buttons">
+                <a href="@Url.Action("XemGioHang","GioHang")" class="button">Chi tiết</a>
+            </p>
+        </div>
+    </div>
+}

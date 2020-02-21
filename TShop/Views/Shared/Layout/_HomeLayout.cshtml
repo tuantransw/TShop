@@ -64,111 +64,19 @@
                             <div class="email"><a href="mailto:tuantran.sw@gmail.com"><i class="fa fa-envelope-o"></i><span>Tuantran.sw@gmail.com</span></a></div>
                         </div>
                         <div class="search-categori">
-                            <div class="categori">
-                                <form id="select-categoris" method="post" class="form-horizontal">
-                                    <select name="language" class="orderby">
-                                        <option value="">Categories</option>
-                                        <option value="12">Clothing</option>
-                                        <option value="21">_Dresses </option>
-                                        <option value="25">_ _Coctail</option>
-                                        <option value="26">_ _Day </option>
-                                        <option value="27">_ _Evening </option>
-                                        <option value="28">_ _Sundresses</option>
-                                        <option value="29">_ _Sweters</option>
-                                        <option value="30">_ _Belts</option>
-                                        <option value="22">_Accessories</option>
-                                        <option value="31">_ _Hair Accessories </option>
-                                        <option value="32">_ _Hats </option>
-                                        <option value="33">_ _Gloves </option>
-                                        <option value="34">_ _Lifestyles</option>
-                                        <option value="35">_Medical</option>
-                                        <option value="36">_ _Phasellus</option>
-                                        <option value="23">_ _laptop </option>
-                                        <option value="37">_ _Phasellus</option>
-                                        <option value="38">_ _Healthcare </option>
-                                        <option value="39">_Electronic </option>
-                                        <option value="40">_ _Cosmetic </option>
-                                        <option value="13">_ _Electronics </option>
-                                        <option value="24">_ _camcorder </option>
-                                        <option value="46">_ _Healthcare </option>
-                                        <option value="47">_ _Laptop</option>
-                                        <option value="48">_ _Camera</option>
-                                        <option value="41">_ _Medical</option>
-                                        <option value="49">_ _Camera</option>
-                                        <option value="50">_ _Camcorders</option>
-                                        <option value="51">_ _Camcorders</option>
-                                        <option value="42">_ _Healthcare</option>
-                                        <option value="52">_ _Medical</option>
-                                        <option value="53">_ _Healthcare</option>
-                                        <option value="54">_ _Healthcare </option>
-                                        <option value="14">_Sports</option>
-                                        <option value="43">_ _category 1</option>
-                                        <option value="60">_ _day </option>
-                                        <option value="61">_ _evening </option>
-                                        <option value="62">_ _night </option>
-                                        <option value="44">_ _category 2 </option>
-                                        <option value="63">_kids </option>
-                                        <option value="64">_men </option>
-                                        <option value="65">_Women </option>
-                                        <option value="45">_ _category 3 </option>
-                                        <option value="66">_ _clothing </option>
-                                        <option value="67">_ _Accessories </option>
-                                        <option value="15">_ _Smartphone</option>
-                                        <option value="55">_ _category 1 </option>
-                                        <option value="56">_ _category 2 </option>
-                                        <option value="57">_ _category 3 </option>
-                                        <option value="16">_ _Beauty </option>
-                                        <option value="58">_ _category 1 </option>
-                                        <option value="59">_ _category 2 </option>
-                                        <option value="17">_ _Bags, Shoes</option>
-                                        <option value="18">_Networking </option>
-                                        <option value="19">_ _Accessories </option>
-                                        <option value="20">_ _Entertainment </option>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="search-box">
-                                <form action="#">
-                                    <input type="text" class="form-control input-sm" maxlength="64" placeholder="Tìm kiếm trên TShop">
-                                    <button type="submit">Tìm kiếm</button>
-                                </form>
-                            </div>
+                            @using (Html.BeginForm("KetQuaTimKiem", "TimKiem"))
+                            {
+                                <div class="search-box">
+                                   
+                                        <input name="TuKhoa" type="text" class="form-control input-sm" maxlength="64" placeholder="Tìm kiếm trên TShop">
+                                        <button type="submit">Tìm kiếm</button>
+                                
+                                </div>
+                            }
                         </div>
                     </div>
                     <div class="col-xl-2 col-md-3 col-12">
-                        <div class="shopping-cart expand">
-                            <a href="cart.html"><span>Giỏ hàng(0)</span></a>
-                            <div class="restrain small-cart-content">
-                                <ul class="cart-list">
-                                    <li>
-                                        <a class="sm-cart-product" href="product-details.html">
-                                            <img src="img/product/sscart-1.jpg" alt="">
-                                        </a>
-                                        <div class="small-cart-detail">
-                                            <a class="remove" href="#"><i class="fa fa-times-circle-o"></i></a>
-                                            <a href="#" class="edit-btn"><img src="img/btn_edit.gif" alt="Edit Button"></a>
-                                            <a class="small-cart-name" href="product-details.html">Voluptas nulla</a>
-                                            <span class="quantitys"><strong>1</strong>x<span>$75.00</span></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="sm-cart-product" href="product-details.html">
-                                            <img src="img/product/sscart-2.jpg" alt="">
-                                        </a>
-                                        <div class="small-cart-detail">
-                                            <a class="remove" href="#"><i class="fa fa-times-circle-o"></i></a>
-                                            <a href="#" class="edit-btn"><img src="img/btn_edit.gif" alt="Edit Button"></a>
-                                            <a class="small-cart-name" href="product-details.html">Donec ac tempus</a>
-                                            <span class="quantitys"><strong>1</strong>x<span>$40.00</span></span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <p class="total">Subtotal: <span class="amount">$155.00</span></p>
-                                <p class="buttons">
-                                    <a href="checkout.html" class="button">Thanh toán</a>
-                                </p>
-                            </div>
-                        </div>
+                        @Html.Action("GioHangPartial", "GioHang")
                     </div>
                 </div>
             </div>
@@ -546,6 +454,9 @@
     <!-- main js
     ============================================ -->
     <script src="~/Content/js/main.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
 </body>
 
 </html>
