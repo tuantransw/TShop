@@ -140,7 +140,7 @@
                                         </span>
                                     </p>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                                @Html.Raw(Model.CauHinh)
                                 <div class="price-single">
                                     @{var donGia = String.Format("{0:0,0 VNĐ}", Model.DonGia);} @donGia
                                     <p>Availability:<span>Unlimited</span></p>
@@ -184,15 +184,7 @@
                                 <div class="tab-pane fade show active" id="product-des">
                                     <div class="std">
                                         <p><strong>Chi tiết sản phẩm</strong></p>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur r idiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
-                                        <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum d olor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diumy eirmod tempor invidunt et dolore</p>
-                                        <p><strong>List Sample</strong></p>
-                                        <ul>
-                                            <li>Donec metus est.</li>
-                                            <li>Consectetur adipiscing.</li>
-                                            <li>Dapibus feugiat.</li>
-                                            <li>Gravida tortor.</li>
-                                        </ul>
+                                        @Html.Raw(Model.MoTa)
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="add-review">

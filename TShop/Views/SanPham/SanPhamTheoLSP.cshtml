@@ -211,7 +211,7 @@
                                             </a>
                                         </div>
                                         <div class="product-content">
-                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})">@item.TenSP</a></h2>
+                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})">@item.TenSP.Substring(0, 18)...</a></h2>
                                             <div class="rating">
                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -242,11 +242,11 @@
                                             </div>
                                         </div>
                                         <ul class="add-to-links">
-                                            <li>
+                                            @*<li>
                                                 <div class="wishlist">
                                                     <a title="Thêm vào danh sách yêu thích" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
                                                 </div>
-                                            </li>
+                                            </li>*@
                                             <li>
                                                 <div class="view-products">
                                                     <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>

@@ -64,7 +64,7 @@ namespace TShop.Controllers
             }
             // Chức năng phân trang
             // Số sản phẩm trên trang
-            int PageSize = 3;
+            int PageSize = 12;
             // Trang hiện tại
             int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
 
@@ -93,7 +93,7 @@ namespace TShop.Controllers
             }
             // Chức năng phân trang
             // Số sản phẩm trên trang
-            int PageSize = 3;
+            int PageSize = 12;
             // Trang hiện tại
             int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
 

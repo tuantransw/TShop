@@ -17,7 +17,7 @@ namespace TShop.Controllers
             var listSanPham = db.SANPHAMs.Where(n => n.TenSP.Contains(TuKhoa));
             // Chức năng phân trang
             // Số sản phẩm trên trang
-            int PageSize = 3;
+            int PageSize = 12;
             // Trang hiện tại
             int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
             ViewBag.TuKhoa = TuKhoa;
