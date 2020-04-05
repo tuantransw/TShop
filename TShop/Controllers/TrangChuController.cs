@@ -20,15 +20,6 @@ namespace TShop.Controllers
             return View();
         }
 
-        public PartialViewResult ThuongHieuPartial()
-        {
-            //var loaiSanPham = db.LOAISANPHAMs.ToList();
-            //ViewBag.vBLoaiSanPham = loaiSanPham;
-            ViewBag.vBSanPhamBanChay = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false).ToList();
-            ViewBag.vBSanPhamMoi = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false && n.Moi == true).ToList();
-
-            return PartialView();
-        }
        
         [HttpGet]
         public ActionResult TaiKhoan()

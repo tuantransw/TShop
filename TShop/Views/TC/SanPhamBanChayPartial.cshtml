@@ -1,0 +1,40 @@
+﻿@using TShop.Models;
+@model IEnumerable<SANPHAM>
+<aside>
+    <div class="hotsell-area">
+        <div class="area-title">
+            <h3>Sản phẩm</h3>
+        </div>
+        <div class="total-hotsell">
+            @foreach (var item in Model.Take(6))
+            {
+                <div class="single-hotsell aside-padd">
+                    <div class="hotsell-img">
+                        <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })"><img src="@Url.Content("~/Content/HinhAnh/"+item.HinhAnh)" alt=""></a>
+                    </div>
+                    <div class="hotsell-text">
+                        @{
+                            if (item.TenSP.Length < 15)
+                            {
+                                <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })">@item.TenSP</a>
+                            }
+                            else { <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })">@item.TenSP.Substring(0,12)...</a>}
+                        }
+
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <span class="new-price">@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</span>
+                        @*<span class="old-rpice"><del>@{var donGia1 = (item.DonGia * 0,1)}Giá cũ:@donGia1 </del></span>*@
+                    </div>
+                </div>
+            }
+         
+        </div>
+        <!--total hotsell-->
+    </div>
+</aside>

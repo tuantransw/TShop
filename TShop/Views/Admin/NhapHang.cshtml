@@ -1,0 +1,481 @@
+﻿@using TShop.Models;
+@model PHIEUNHAP
+@{
+    ViewBag.Title = "NhapHang";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+@{IEnumerable<SANPHAM> listSP = ViewBag.ListSP as IEnumerable<SANPHAM>;}
+
+<style>
+    .form-control {
+        display: block;
+        width: 130%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #6e707e;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d1d3e2;
+        border-radius: .35rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    button, input, optgroup, select, textarea {
+        margin: 3px;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    .test3 {
+        display: block;
+        width: 275px;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #6e707e;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d1d3e2;
+        border-radius: .35rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+</style>
+
+<style>
+    /** {
+        box-sizing: border-box;
+    }
+
+    body {
+        font: 16px Arial;
+    }*/
+
+    /*the container must be positioned relative:*/
+    /*.autocomplete {
+        position: relative;
+        display: inline-block;
+    }*/
+
+    /*input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+    }*/
+
+    /*input[type=text] {
+            background-color: #f1f1f1;
+            width: 100%;
+        }*/
+
+    /*input[type=submit] {
+            background-color: DodgerBlue;
+            color: #fff;
+            cursor: pointer;
+        }*/
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            /*when hovering an item:*/
+            .autocomplete-items div:hover {
+                background-color: #e9e9e9;
+            }
+
+    /*when navigating through the items using the arrow keys:*/
+    .autocomplete-active {
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+</style>
+<style>
+    .ui-menu .ui-menu-item a {
+        /*background: red;*/
+        /*height: 10px;
+        font-size: 8px;*/
+        color: black;
+        padding-left: 20px;
+    }
+
+        .ui-menu .ui-menu-item a:hover {
+            /*background: red;*/
+            /*height: 10px;
+        font-size: 8px;*/
+            color: black;
+            text-decoration: none;
+        }
+
+    .ui-menu {
+        /*background: red;*/
+        /*height: 10px;
+        font-size: 8px;*/
+        background-color: white;
+        width: 700px;
+        list-style-type: none;
+        background-clip: border-box;
+        border: 1px solid #e3e6f0;
+        border-radius: .35rem;
+        box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+    }
+
+        .ui-menu li {
+            padding-top: 12px;
+            margin-left: -40px;
+            /*background-color:#C8C8C9;*/
+        }
+
+            .ui-menu li:hover {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                background-color: #C8C8C9;
+            }
+
+    /*.card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #e3e6f0;
+        border-radius: .35rem;
+    }
+
+    .shadow {
+        box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+    }*/
+</style>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    @*<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>*@
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Nhập hàng</h6>
+        </div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("NhapHang", "Admin"))
+            {
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6" style="margin-left: 11px; margin-bottom: 8px ">
+                                <label style="margin-bottom:0px;">
+                                    Tìm kiếm sản phẩm:
+                                </label>
+                                <div @*class="autocomplete"*@ style="display:flex;">
+                                    <input type="text" id="myIDs" class="test3" autocomplete="off" name="ename">
+                                    <input type="button" id="btnAdd1" value="+" class="btn btn-success" style="font-size: 16px;padding-left: 15px;padding-right: 15px;" />
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $("#myIDs").autocomplete({
+                                            source: function (request, response) {
+                                                $.ajax({
+                                                    url: "/Admin/getemp/",
+                                                    data: "{'ename':'" + request.term + "'}",
+                                                    datatype: "json",
+                                                    type: "POST",
+                                                    contentType: "application/json; charset=utf-8",
+                                                    success: function (data) {
+                                                        response($.map(data, function (item) {
+                                                            return item;
+                                                        }))
+                                                    },
+                                                });
+                                            },
+                                            minLenght: 1
+                                        });
+                                    });
+                                </script>
+                                @*<input id="myIDs" type="text" name="ename"/>*@
+                                @*<input type="text" id="ProductID" />
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#ProductID').autocomplete({
+                                                source:'@Url.Action("Search","Admin")'
+                                            });
+                                        });
+
+                                    </script>*@
+                            </div>
+                            <div class="col-sm-12 col-md-6" style="margin-left:11px; margin-bottom:8px">
+                                <label style="margin-bottom:0px;">Ngày nhập</label>
+                                @*<input type="text" class="test3" id="datetimepicker4" name="NgayNhap" />*@
+                                @*@{ DateTime dtn = DateTime.Now;}*@
+                                <input type="date" id="datenow" name="NgayNhap" class="test3" value="">
+
+                            </div>
+                            <div class="col-sm-12 col-md-6" style="margin-left:11px; margin-bottom:8px">
+                                <label style="margin-bottom:0px;">Tên nhà cung cấp</label>
+                                @Html.DropDownList("MaNCC", null, htmlAttributes: new { @class = "test3" })
+                                @*@Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+                        @*<div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="dataTable_length">
+                                    <label>
+                                        Show
+                                        <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entries
+                                    </label>
+                                </div>
+                            </div>*@
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                @*<tfoot>
+                                        <tr><th rowspan="1" colspan="1">Sản phẩm</th><th rowspan="1" colspan="1">Đơn giá nhập</th><th rowspan="1" colspan="1">Số lượng nhập</th>
+                                    </tfoot>*@
+
+                                <tbody class="tbNhap" name="">
+                                    @*@foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">@item.MaSP</td>
+                                                <td>@item.TenSP</td>
+                                                <td>@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</td>
+                                                <td>@item.SoLuongTon</td>
+                                                <td><img style="width:60px;height:60px;" class="primary-image" src="@Url.Content("~/Content/HinhAnh/"+@item.HinhAnh)" alt="" /></td>
+                                                <td>@item.NgayCapNhat</td>
+                                                <td><a href="@Url.Action("SuaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-warning">Sửa</a></td>
+                                                <td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>
+                                            </tr>
+                                        }*@
+                                    <tr class="trAppend" data-id="-1" style="display:none">
+                                        <td>
+                                            <select name="" class="ddlSanPham" style="width:597px">
+                                                @foreach (var item in listSP)
+                                                {
+                                                <option value="@item.MaSP">@item.MaSP - @item.TenSP</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td><input style="width:145px" class="txtDonGiaNhap" name="DonGiaNhap" value="0" /></td>
+                                        <td><input style="width:145px" class="txtSoLuongNhap" name="SoLuongNhap" value="0" /></td>
+                                        <td><input class="btnDelete btn btn-danger" style="width:40px;" name="" value="-" /></td>
+                                    </tr>
+                                    <tr class="trAppend1" data-id="-1" style="display:none">
+                                        <td>
+                                            <script></script>
+                                            <select name="" id="" class="ddlSanPham"style="width:597px">
+
+                                                @*<option value="" id="spx1"></option>*@
+                                                @foreach (var item in listSP)
+                                                {
+                                                    <option value="@item.MaSP" id="spx1">@item.MaSP - @item.TenSP</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td><input style="width:145px" class="txtDonGiaNhap" name="DonGiaNhap" value="0" /></td>
+                                        <td><input style="width:145px" class="txtSoLuongNhap" name="SoLuongNhap" value="0" /></td>
+                                        <td><input class="btnDelete btn btn-danger" style="width:40px;" name="" value="-" /></td>
+                                    </tr>
+
+                                    <tr class="trFirtChild" data-id="-1" role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 679px;">Sản phẩm</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 179px;">Đơn giá nhập</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 179px;">Số lượng nhập</th><th style="width: 73px;"></th></tr>
+
+                                </tbody>
+                            </table>
+                            <div style="padding-bottom:30px">
+                                <input type="button" id="btnAdd" value="+" class="btn btn-success" style="font-size: 20px;padding-left: 15px;padding-right: 15px;">
+                                <input type="submit" id="btnSubmit" value="Nhập hàng" class="btn btn-success" style="font-size: 20px;padding-left: 15px;padding-right: 15px;">
+                                @{ if (ViewBag.ThongBao == "N")
+                                    {
+                                        <span id="TB" class="" style="color:red">Nhập hàng thành công</span>
+                                        <script>$(".trAppended").empty();</script>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    //$('#datetimepicker4').data("DateTimePicker").FUNCTION();
+    //$(function () {
+    //    $("#datetimepicker4").datetimepicker();
+    //});
+     //$('#datetimepicker4').datepicker({
+     //       uiLibrary: 'bootstrap4'
+     //   });
+    @*<script>$("#TB").hide()</script>*@
+    $("#btnAdd").click(function () {
+        $("#TB").hide();
+        var id_cuoi = $(".tbNhap").find("tr:last-child").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+        var tdNoiDung = $(".trAppend").html();
+        var trNoiDung = "<tr class=\"trAppended\" data-id=\"" + i + "\">" + tdNoiDung + "</tr>";
+        $(".tbNhap").append(trNoiDung);
+        loadIDLenThe();
+    })
+    $("#btnAdd1").click(function () {
+        $("#TB").hide();
+        
+        var id_cuoi = $(".tbNhap").find("tr:last-child").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+        var tensp = $("#myIDs").val();
+        //alert(tensp);
+        var testc = Number(tensp.split(" ", 1));
+        $("#spx1").attr('value',testc);
+        //alert(testc);
+
+        $("#spx1").text(tensp);
+        //var tensp2 = $("#myIDs").val();
+        //alert(tensp2);
+        var tdNoiDung = $(".trAppend1").html();
+
+        var trNoiDung = "<tr class=\"trAppended\" data-id=\"" + i + "\">" + tdNoiDung + "</tr>";
+        //$(".trAppended").find("#spx1").attr("value", tensp);
+
+        $(".tbNhap").append(trNoiDung);
+
+        loadIDLenThe();
+    })
+
+    $("body").delegate(".btnDelete", "click", function () {
+        $(this).closest(".trAppended").remove();
+        capNhatID();
+    })
+
+    function loadIDLenThe() {
+        $(".trAppended").each(function () {
+            var id = $(this).attr("data-id");
+            //var nameMaPN = "[" + id + "].MaSP";
+            var nameMaSP = "[" + id + "].MaSP";
+            var nameSoLuongNhap = "[" + id + "].SoLuongNhap";
+
+            var nameDonGiaNhap = "[" + id + "].DonGiaNhap";
+            $(this).find(".ddlSanPham").attr("name", nameMaSP);
+            $(this).find(".txtDonGiaNhap").attr("name", nameDonGiaNhap);
+            $(this).find(".txtSoLuongNhap").attr("name", nameSoLuongNhap);
+        })
+    }
+
+    function capNhatID() {
+        var id_cuoi = $(".tbNhap").find(".trFirtChild").attr("data-id");
+        i = parseInt(id_cuoi) + 1;
+        $(".trAppended").each(function () {
+            var id = i;
+            $(this).attr("data-id", i);
+            //var nameMaPN = "[" + id + "].MaSP";
+            var nameMaSP = "[" + id + "].MaSP";
+
+            var nameSoLuongNhap = "[" + id + "].SoLuongNhap";
+            var nameDonGiaNhap = "[" + id + "].DonGiaNhap";
+            $(this).find(".ddlSanPham").prop("name", nameMaSP);
+            $(this).find(".txtDonGiaNhap").attr("name", nameDonGiaNhap);
+            $(this).find(".txtSoLuongNhap").attr("name", nameSoLuongNhap);
+            i++;
+        })
+    }
+
+
+    $("#btnSubmit").click(function () {
+
+        var id = $(".trAppended").attr("data-id");
+        if (id == null) {
+            alert("Chưa có hàng!");
+             return false;
+        }
+        if (KiemTraDonGiaNhap() == false) {
+            return false;
+        }
+        if (KiemTraSoLuongNhap() == false) {
+            return false;
+        }
+
+    });
+
+    function KiemTraDonGiaNhap() {
+        var bl = true;
+        $(".trAppended .txtDonGiaNhap").each(function () {
+            var giatri = $(this).val();
+            if (isNaN(giatri) == true || giatri=="" || giatri <= -1) {
+                alert("Đơn giá nhập không hợp lệ!");
+                bl = false;
+                return bl;
+            }
+        })
+        return bl;
+    }
+
+    function KiemTraSoLuongNhap() {
+        var bl = true;
+        //$(".trAppended")
+        $(".trAppended .txtSoLuongNhap").each(function () {
+            var giatri = $(this).val();
+            console.log(giatri);
+            var t = Number(giatri);
+            if (isNaN(giatri) == true || t <= 0 || giatri=="") {
+                alert("Số lượng nhập không hợp lệ!");
+                bl = false;
+                return bl;
+            }
+
+
+        })
+        return bl;
+    };
+    //function KiemTraSanPham() {
+
+    //    var i = 0;
+    //    $(".trAppended .ddlSanPham").each(function () {
+    //        var id = i;
+    //        var lgt = $(".ddlSanPham").attr("name");
+    //       if()
+
+    //        if (isNaN(giatri) == true | giatri == 0) {
+    //            alert("Số lượng nhập không hợp lệ!");
+    //            bl = false;
+    //            return bl;
+    //        }
+    //        i++;
+    //    })
+    //    return bl;
+    //};
+
+
+</script>
+

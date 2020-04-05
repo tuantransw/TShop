@@ -12,7 +12,7 @@
             <div class="col-lg-3 col-md-3 nopadding-right">
                 @Html.Action("DanhMucSanPhamPartial","LoaiSanPham")
                 <!--aside 1 end-->
-                <aside>
+                @*<aside>
                     <div class="tag-area">
                         <div class="area-title">
                             <h3>Popular Tags</h3>
@@ -30,53 +30,9 @@
                             <li> <a href="#">electronics</a></li>
                         </ul>
                     </div>
-                </aside>
+                </aside>*@
                 <!--aside 2 end-->
-                <aside>
-                    <div class="newsletter-area">
-                        <div class="area-title">
-                            <h3>Tin mới</h3>
-                        </div>
-                        <div class="aside-padd">
-                            <div class="vina-newsletter">
-                                <form method="post" action="#">
-                                    <div class="input-box">
-                                        <label>Đăng kí nhận tin mới từ chúng tôi:</label>
-                                        <input type="email" placeholder="Email" name="email">
-                                    </div>
-                                    <div class="input-box">
-                                        <input type="submit" class="submit-btn" name="submit" value="Đăng kí">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="web-links">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="rss">
-                                            <i class="fa fa-rss"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="ldin">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="#" class="face"><i class="fa fa-facebook"></i></a></li>
-                                    <li>
-                                        <a href="#" class="google">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
+                @Html.Action("DangKiNhanTinPartial","TC")
                 <!--aside 3 end-->
             </div>
             <!--col-md-3-->
@@ -120,7 +76,7 @@
                                                     <img class="zoom_03" src="@Url.Content("~/Content/HinhAnh/"+ Model.HinhAnh4)" alt="">
                                                 </a>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -131,19 +87,24 @@
                                 <h3>@Model.TenSP</h3>
                                 <div class="hits-rating">
                                     <p>
-                                        hits:5568 | <span>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        @*Lượt xem:@Model.LuotXem | <span>*@
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
                                         </span>
                                     </p>
                                 </div>
                                 @Html.Raw(Model.CauHinh)
                                 <div class="price-single">
                                     @{var donGia = String.Format("{0:0,0 VNĐ}", Model.DonGia);} @donGia
-                                    <p>Availability:<span>Unlimited</span></p>
+                                    @{ if (Model.SoLuongTon > 0)
+                                        { <p>Tình trạng:<span>Còn hàng</span></p>}
+                                        else
+                                        { <p>Tình trạng:<span>Hết hàng</span></p>}
+                                    }
+
                                 </div>
                                 <div class="add-to-box-view pt25 pb25">
                                     <a class="button cart_button" href="@Url.Action("ThemGioHang","GioHang",new { @MaSP=Model.MaSP})" title="Mua ngay">
@@ -160,8 +121,8 @@
                                             <a class="link-wishlist" href="#">Thêm vào danh sách yêu thích</a>
                                         </li>
                                         @*<li>
-                                            <a class="link-compare" href="#">Add Your Review</a>
-                                        </li>*@
+                                <a class="link-compare" href="#">Add Your Review</a>
+                            </li>*@
                                     </ul>
                                 </div>
                                 <div class="social-share pt25 pb25">
@@ -177,7 +138,7 @@
                             <ul class="nav">
                                 <li><a class="active" href="#product-des" data-toggle="tab">Mô tả sản phẩm</a></li>
                                 @*<li><a href="#add-review" data-toggle="tab">Add Your Review</a></li>
-                                <li><a href="#product-tag" data-toggle="tab">Product Tags</a></li>*@
+                    <li><a href="#product-tag" data-toggle="tab">Product Tags</a></li>*@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -613,39 +574,7 @@
                     <div class="clearfix"></div>
                     <!-- product-details-end-->
                     <!--brand crasoule-area-start-->
-                    <div class="brand-crasoule-area featur-padd">
-                        <!-- area title start -->
-                        <div class="area-title bdr mt20">
-                            <h2>Brand & Clients</h2>
-                        </div>
-                        <!-- area title end -->
-                        <div class="total-brand menu-carousel carousel-btn-2 carousel-btn mt10 mb20">
-                            <div class="single-brand">
-                                <img src="img/brand1.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand2.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand3.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand4.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand1.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand2.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand3.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand4.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+                    @Html.Action("ThuongHieuPartial", "TC")
                     <!--brand crasoule-area-end-->
                 </div>
                 <!--ambit-key-->

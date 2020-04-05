@@ -140,7 +140,9 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\LoaiSanPhamController.cs" />
+    <Compile Include="Controllers\QuanLyPhieuNhapController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\TCController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
@@ -163,6 +165,7 @@
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Meta\KHACHHANG.cs" />
+    <Compile Include="Models\Meta\SANPHAM.cs" />
     <Compile Include="Models\ModelTShop.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1854,10 +1857,6 @@
     <Content Include="Content\HinhAnh\ns100-128.jpg" />
     <Content Include="Content\HinhAnh\pm961-01.jpg" />
     <Content Include="Content\HinhAnh\pm961-02.jpg" />
-    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-09.jpg" />
-    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-10.jpg" />
-    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-11.jpg" />
-    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-16.jpg" />
     <Content Include="Content\HinhAnh\sn550-01.jpg" />
     <Content Include="Content\HinhAnh\sn550-02.jpg" />
     <Content Include="Content\HinhAnh\sn550-03.jpg" />
@@ -1865,6 +1864,14 @@
     <Content Include="Content\HinhAnh\suv500-msata-01.jpg" />
     <Content Include="Content\HinhAnh\suv500-msata-02.jpg" />
     <Content Include="Content\HinhAnh\suv500-msata-03.jpg" />
+    <Content Include="Content\HinhAnh\ThuongHieu\apacer.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\crurial.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\intel.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\kingston.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\samsung.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\seagate.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\toshiba.png" />
+    <Content Include="Content\HinhAnh\ThuongHieu\western-digital.png" />
     <Content Include="Content\HinhAnh\transcend-mts420-02.jpg" />
     <Content Include="Content\Icon\hdd_icon.png" />
     <Content Include="Content\Icon\ocunghdd_didong_icon.png" />
@@ -2296,6 +2303,7 @@
     <Content Include="Content\admin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\admin\vendor\jquery\jquery.min.map" />
     <Content Include="Content\admin\vendor\jquery\jquery.slim.min.map" />
+    <None Include="Properties\PublishProfiles\WebProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2331,6 +2339,28 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\XemSanPham.cshtml" />
     <Content Include="Views\Admin\ThemSanPham.cshtml" />
+    <Content Include="Views\Admin\SuaSanPham.cshtml" />
+    <Content Include="Views\Admin\XoaSanPham.cshtml" />
+    <Content Include="Views\Admin\NhapHang.cshtml" />
+    <Content Include="Views\TC\ThuongHieuPartial.cshtml" />
+    <Content Include="Views\TC\DangKiNhanTinPartial.cshtml" />
+    <Content Include="Views\TC\SanPhamBanChayPartial.cshtml" />
+    <Content Include="Views\TC\MenuPartial.cshtml" />
+    <Content Include="Views\TC\SieuGiamGiaSanPhamPartial.cshtml" />
+    <Content Include="Views\TC\SlidePartial.cshtml" />
+    <Content Include="Views\TC\BannerPartial.cshtml" />
+    <Content Include="Views\QuanLyPhieuNhap\NhapHang.cshtml" />
+    <Content Include="Views\Admin\ChuaGiao.cshtml" />
+    <Content Include="Views\Admin\KetQuaTimKiem.cshtml" />
+    <Content Include="Views\Admin\ThemNhaCungCap.cshtml" />
+    <Content Include="Views\Admin\ThemNhaSanXuat.cshtml" />
+    <Content Include="Views\Admin\ThemLoaiSanPham.cshtml" />
+    <Content Include="Views\Admin\XemNhaCungCap.cshtml" />
+    <Content Include="Views\Admin\XemNhaSanXuat.cshtml" />
+    <Content Include="Views\Admin\SuaNhaCungCap.cshtml" />
+    <Content Include="Views\Admin\XoaNhaCungCap.cshtml" />
+    <Content Include="Views\Admin\SuaNhaSanXuat.cshtml" />
+    <Content Include="Views\Admin\XoaNhaSanXuat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

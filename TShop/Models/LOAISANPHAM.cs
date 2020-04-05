@@ -26,6 +26,7 @@ namespace TShop.Models
         public Nullable<int> MaLSPGoc { get; set; }
         public string MoTa { get; set; }
         public string BiDanh { get; set; }
+        public Nullable<bool> Xoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANPHAM> SANPHAMs { get; set; }

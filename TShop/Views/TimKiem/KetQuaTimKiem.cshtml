@@ -17,96 +17,9 @@
                 <!--aside 1 end-->
 
 
-                <aside>
-                    <div class="usefull-product-slide">
-                        <div class="area-title">
-                            <h3>Upsell Products</h3>
-                        </div>
-                        <div class="total-usefull-product carousle-pagi common4 ">
-                            <!-- single-product start -->
-                            <div class="col-xs-12">
-                                <div class="single-product">
-                                    <div class="product-label">
-                                    </div>
-                                    <div class="product-img">
-                                        <a href="#">
-                                            <img alt="" src="img/product/product-5.jpg" class="primary-image">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
-                                        <div class="rating">
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="new-price">$222.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-product end -->
-                            <!-- single-product start -->
-                            <div class="col-xs-12">
-                                <div class="single-product">
-                                    <div class="product-label">
-                                    </div>
-                                    <div class="product-img">
-                                        <a href="#">
-                                            <img alt="" src="img/product/product-5.jpg" class="primary-image">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
-                                        <div class="rating">
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="new-price">$222.00</span>
-                                            <span class="old-rpice"><del>$250.00</del></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-product end -->
-                            <!-- single-product start -->
-                            <div class="col-xs-12">
-                                <div class="single-product">
-                                    <div class="product-label">
-                                    </div>
-                                    <div class="product-img">
-                                        <a href="#">
-                                            <img alt="" src="img/product/product-5.jpg" class="primary-image">
-                                        </a>
-                                    </div>
-                                    <div class="product-content">
-                                        <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
-                                        <div class="rating">
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star"></i></a>
-                                            <a href="#"><i class="fa fa-star-o"></i></a>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="new-price">$222.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-product end -->
-                        </div>
-                    </div>
-                </aside>
+                @Html.Action("SieuGiamGiaSanPhamPartial", "TC")
                 <!--aside 3 end-->
-                <aside>
+                @*<aside>
                     <div class="tag-area">
                         <div class="area-title">
                             <h3>Popular Tags</h3>
@@ -124,53 +37,9 @@
                             <li> <a href="#">electronics</a></li>
                         </ul>
                     </div>
-                </aside>
+                </aside>*@
                 <!--aside 4 end-->
-                <aside>
-                    <div class="newsletter-area">
-                        <div class="area-title">
-                            <h3>Newsletter</h3>
-                        </div>
-                        <div class="aside-padd">
-                            <div class="vina-newsletter">
-                                <form method="post" action="#">
-                                    <div class="input-box">
-                                        <label>Sign Up for Our Newsletter:</label>
-                                        <input type="email" placeholder="Email" name="email">
-                                    </div>
-                                    <div class="input-box">
-                                        <input type="submit" class="submit-btn" name="submit" value="Subscribe">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="web-links">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="rss">
-                                            <i class="fa fa-rss"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="ldin">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="#" class="face"><i class="fa fa-facebook"></i></a></li>
-                                    <li>
-                                        <a href="#" class="google">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
+                @Html.Action("DangKiNhanTinPartial", "TC")
                 <!--aside 5 end-->
             </div>
 
@@ -204,7 +73,11 @@
                                 <div class="col-xl-3 col-lg-4  col-md-6 col-sm-6 col-12  col-padd">
                                     <div class="single-product">
                                         <div class="product-label">
-                                            <div class="new"></div>
+                                            @{ if (item.Moi == true)
+                                                {<div class="new"></div> }
+                                                else
+                                                {<div class=""></div> }
+                                            }
                                         </div>
                                         <div class="product-img">
                                             <a href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})">
@@ -212,7 +85,13 @@
                                             </a>
                                         </div>
                                         <div class="product-content">
-                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})">@item.TenSP.Substring(0, 18)...</a></h2>
+                                            <h2 class="product-name">
+                                                @{if (item.TenSP.Length < 18)
+                                                    { <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })">@item.TenSP</a> }
+                                                else
+                                                {
+                                                    string a = item.TenSP.Substring(0, 18) + "..."; <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })">@a</a> } }
+                                            </h2>
                                             <div class="rating">
                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -225,7 +104,13 @@
                                             </div>
                                         </div>
                                         <div class="product-content2">
-                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})">@item.TenSP</a></h2>
+                                            <h2 class="product-name">
+                                                @{if (item.TenSP.Length < 18)
+                                                    { <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })">@item.TenSP</a> }
+                                                else
+                                                {
+                                                    string a = item.TenSP.Substring(0, 18) + "..."; <a href="@Url.Action("ChiTietSanPham", "SanPham", new { MaSP = item.MaSP })">@a</a> } }
+                                            </h2>
                                             <div class="rating">
                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -244,10 +129,10 @@
                                         </div>
                                         <ul class="add-to-links">
                                             @*<li>
-                                                <div class="wishlist">
-                                                    <a title="Thêm vào danh sách yêu thích" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
-                                                </div>
-                                            </li>*@
+                                    <div class="wishlist">
+                                        <a title="Thêm vào danh sách yêu thích" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                    </div>
+                                </li>*@
                                             <li>
                                                 <div class="view-products">
                                                     <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new {MaSP=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
@@ -286,39 +171,7 @@
                         </div>
                     </div>
                     <!--brand crasoule-area-start-->
-                    <div class="brand-crasoule-area featur-padd">
-                        <!-- area title start -->
-                        <div class="area-title bdr mt20">
-                            <h2>Brand & Clients</h2>
-                        </div>
-                        <!-- area title end -->
-                        <div class="total-brand menu-carousel carousel-btn-2 carousel-btn mt10 mb20">
-                            <div class="single-brand">
-                                <img src="img/brand1.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand2.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand3.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand4.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand1.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand2.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand3.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand4.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+                    @Html.Action("ThuongHieuPartial", "TC")
                     <!--brand crasoule-area-end-->
                 </div>
                 <!--ambit-key-->

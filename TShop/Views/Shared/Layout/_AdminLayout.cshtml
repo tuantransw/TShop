@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>TShop Trang quản trị</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/Content/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,22 +28,31 @@
             selector: '#mytextarea1'
         });
     </script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>*@
+
+    @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>*@
+
+    @*<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>*@
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
 </head>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul @*class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"*@ class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Admin")">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">TShop Admin <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -51,43 +60,58 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item @*active*@">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="@Url.Action("Index","Admin")">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang Chủ</span>
                 </a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item @*active*@">
+                <a class="nav-link" href="@Url.Action("Index","Admin")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Quản lý đơn đặt hàng</span>
+                </a>
+            </li>
 
- 
+            <hr class="sidebar-divider my-0">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+            @*<div class="sidebar-heading">
+            Addons
+        </div>*@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Quản lý</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <h6 class="collapse-header">Sản phẩm:</h6>
+                        <a class="collapse-item" href="@Url.Action("XemSanPham","Admin")">Tất cả sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("ThemSanPham","Admin")">Thêm mới sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("XemLoaiSanPham","Admin")">Tất cả loại sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("ThemLoaiSanPham","Admin")">Thêm loại sản phẩm</a>
+                        <a class="collapse-item" href="@Url.Action("NhapHang","Admin")">Nhập hàng</a>
                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">Nhà cung cấp:</h6>
+                        <a class="collapse-item" href="@Url.Action("XemNhaCungCap","Admin")">Tất cả nhà cung cấp</a>
+                        <a class="collapse-item" href="@Url.Action("ThemNhaCungCap","Admin")">Thêm mới nhà cung cấp</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Nhà sản xuất:</h6>
+                        <a class="collapse-item" href="@Url.Action("XemNhaSanXuat","Admin")">Tất cả nhà sản xuất</a>
+                        <a class="collapse-item" href="@Url.Action("ThemNhaSanXuat","Admin")">Thêm mới nhà sản xuất</a>
+
+                        @*<a class="collapse-item" href="404.html">404 Page</a>
+        <a class="collapse-item" href="blank.html">Blank Page</a>*@
                     </div>
                 </div>
             </li>
 
-    
+
 
 
             <!-- Divider -->
@@ -115,16 +139,19 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                    @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">*@
+                        @using (Html.BeginForm("KetQuaTimKiem", "Admin"))
+                        {
+                            <div class="input-group" style="width:500px;">
+                                <input name="TuKhoa" type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        }
+                    @*</form>*@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -230,7 +257,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="~/Content/admin/vendor/jquery/jquery.min.js"></script>
+    @*<script src="~/Content/admin/vendor/jquery/jquery.min.js"></script>*@
     <script src="~/Content/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

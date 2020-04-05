@@ -2,7 +2,7 @@
 @using PagedList.Mvc;
 @model PagedList.IPagedList<SANPHAM>
 @{
-    ViewBag.Title = "XemSanPham";
+    ViewBag.Title = "KetQuaTimKiem";
     Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
 }
 
@@ -15,13 +15,13 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tất cả sản phẩm</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tìm kiếm sản phẩm</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        @*<div class="col-sm-12 col-md-6">
+                    @*<div class="row">
+                        <div class="col-sm-12 col-md-6">
                                 <div class="dataTables_length" id="dataTable_length">
                                     <label>
                                         Show
@@ -33,15 +33,15 @@
                                         </select> entries
                                     </label>
                                 </div>
-                            </div>*@
-                        @*<div class="col-sm-12 col-md-6">
-                                <div id="dataTable_filter" class="dataTables_filter">
-                                    <label>
-                                        Tìm kiếm sản phẩm:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
-                                    </label>
-                                </div>
-                            </div>*@
-                    </div>
+                            </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="dataTable_filter" class="dataTables_filter">
+                                <label>
+                                    Tìm kiếm sản phẩm:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
+                                </label>
+                            </div>
+                        </div>
+                    </div>*@
                     <div class="row">
                         <div class="col-sm-12">
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
@@ -85,12 +85,12 @@
                                         if (i == Model.PageNumber)
                                         {
                                             @*<li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
-                                            <li class="paginate_button page-item active"><a href="@Url.Action("XemSanPham","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            <li class="paginate_button page-item active"><a href="@Url.Action("KetQuaTimKiem","Admin",new { Page = i ,@TuKhoa = ViewBag.TuKhoa})" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
                                         }
                                         else
                                         {
                                             @*<li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
-                                            <li class="paginate_button page-item "><a href="@Url.Action("XemSanPham","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            <li class="paginate_button page-item "><a href="@Url.Action("KetQuaTimKiem","Admin",new { Page = i ,@TuKhoa = ViewBag.TuKhoa})" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
                                         }
 
 
@@ -116,4 +116,3 @@
     </div>
 
 </div>
-

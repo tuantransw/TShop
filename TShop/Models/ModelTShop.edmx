@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHITIETDONDATHANG">
           <Key>
             <PropertyRef Name="MaDDH" />
@@ -61,6 +61,7 @@
           <Property Name="MaLSPGoc" Type="int" />
           <Property Name="MoTa" Type="nvarchar(max)" />
           <Property Name="BiDanh" Type="nvarchar(max)" />
+          <Property Name="Xoa" Type="bit" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -71,6 +72,7 @@
           <Property Name="DiaChi" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="Xoa" Type="bit" />
         </EntityType>
         <EntityType Name="NHASANXUAT">
           <Key>
@@ -80,6 +82,7 @@
           <Property Name="TenNSX" Type="nvarchar" MaxLength="50" />
           <Property Name="ThongTin" Type="nvarchar(max)" />
           <Property Name="HinhAnh" Type="nvarchar(max)" />
+          <Property Name="Xoa" Type="bit" />
         </EntityType>
         <EntityType Name="PHIEUNHAP">
           <Key>
@@ -280,8 +283,7 @@
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -349,6 +351,7 @@
           <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BiDanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_LOAISANPHAM" FromRole="LOAISANPHAM" ToRole="SANPHAM" />
+          <Property Name="Xoa" Type="Boolean" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
           <Key>
@@ -361,6 +364,7 @@
           <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK_PHIEUNHAP_NHACUNGCAP" FromRole="NHACUNGCAP" ToRole="PHIEUNHAP" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_NHACUNGCAP" FromRole="NHACUNGCAP" ToRole="SANPHAM" />
+          <Property Name="Xoa" Type="Boolean" />
         </EntityType>
         <EntityType Name="NHASANXUAT">
           <Key>
@@ -371,6 +375,7 @@
           <Property Name="ThongTin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_NHASANXUAT" FromRole="NHASANXUAT" ToRole="SANPHAM" />
+          <Property Name="Xoa" Type="Boolean" />
         </EntityType>
         <EntityType Name="PHIEUNHAP">
           <Key>
@@ -635,6 +640,7 @@
           <EntitySetMapping Name="LOAISANPHAMs">
             <EntityTypeMapping TypeName="TShopModel.LOAISANPHAM">
               <MappingFragment StoreEntitySet="LOAISANPHAM">
+                <ScalarProperty Name="Xoa" ColumnName="Xoa" />
                 <ScalarProperty Name="MaLSP" ColumnName="MaLSP" />
                 <ScalarProperty Name="TenLSP" ColumnName="TenLSP" />
                 <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
@@ -647,6 +653,7 @@
           <EntitySetMapping Name="NHACUNGCAPs">
             <EntityTypeMapping TypeName="TShopModel.NHACUNGCAP">
               <MappingFragment StoreEntitySet="NHACUNGCAP">
+                <ScalarProperty Name="Xoa" ColumnName="Xoa" />
                 <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
                 <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
@@ -658,6 +665,7 @@
           <EntitySetMapping Name="NHASANXUATs">
             <EntityTypeMapping TypeName="TShopModel.NHASANXUAT">
               <MappingFragment StoreEntitySet="NHASANXUAT">
+                <ScalarProperty Name="Xoa" ColumnName="Xoa" />
                 <ScalarProperty Name="MaNSX" ColumnName="MaNSX" />
                 <ScalarProperty Name="TenNSX" ColumnName="TenNSX" />
                 <ScalarProperty Name="ThongTin" ColumnName="ThongTin" />

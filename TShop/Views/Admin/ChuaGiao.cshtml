@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "ChuaGiao";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    @*<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>*@
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Nhập hàng</h6>
+        </div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("NhapHang", "Admin"))
+            {
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6" style="margin-left:11px; margin-bottom:8px">
+                                <label style="margin-bottom:0px;">Ngày nhập</label>
+                                @*<input type="text" class="test3" id="datetimepicker4" name="NgayNhap" />*@
+                                @*@{ DateTime dtn = DateTime.Now;}*@
+                                <input type="date" id="datenow" name="NgayNhap" class="test3" value="">
+
+                            </div>
+                            <div class="col-sm-12 col-md-6" style="margin-left:11px; margin-bottom:8px">
+                                <label style="margin-bottom:0px;">Tên nhà cung cấp</label>
+                                @Html.DropDownList("MaNCC", null, htmlAttributes: new { @class = "test3" })
+                                @*@Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+                        @*<div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="dataTable_length">
+                                    <label>
+                                        Show
+                                        <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entries
+                                    </label>
+                                </div>
+                            </div>*@
+                        <div class="col-sm-12 col-md-6">
+                            <div id="dataTable_filter" class="dataTables_filter">
+                                <label>
+                                    Tìm kiếm sản phẩm:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                @*<tfoot>
+                                        <tr><th rowspan="1" colspan="1">Sản phẩm</th><th rowspan="1" colspan="1">Đơn giá nhập</th><th rowspan="1" colspan="1">Số lượng nhập</th>
+                                    </tfoot>*@
+                                @{IEnumerable<SANPHAM> listSP = ViewBag.ListSP as IEnumerable<SANPHAM>;}
+                                <tbody class="tbNhap" name="">
+                                    @*@foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">@item.MaSP</td>
+                                                <td>@item.TenSP</td>
+                                                <td>@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</td>
+                                                <td>@item.SoLuongTon</td>
+                                                <td><img style="width:60px;height:60px;" class="primary-image" src="@Url.Content("~/Content/HinhAnh/"+@item.HinhAnh)" alt="" /></td>
+                                                <td>@item.NgayCapNhat</td>
+                                                <td><a href="@Url.Action("SuaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-warning">Sửa</a></td>
+                                                <td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>
+                                            </tr>
+                                        }*@
+                                    <tr class="trAppend" data-id="-1" style="display:none">
+                                        <td>
+                                            <select name="" class="ddlSanPham">
+                                                @foreach (var item in listSP)
+                                                {
+                                                    <option value="@item.MaSP">@item.TenSP</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td><input style="width:145px" class="txtDonGiaNhap" name="DonGiaNhap" value="0" /></td>
+                                        <td><input style="width:145px" class="txtSoLuongNhap" name="SoLuongNhap" value="0" /></td>
+                                        <td><input class="btnDelete btn btn-danger" style="width:40px;" name="" value="-" /></td>
+                                    </tr>
+
+                                    <tr class="trFirtChild" data-id="-1" role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 679px;">Sản phẩm</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 179px;">Đơn giá nhập</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 179px;">Số lượng nhập</th><th style="width: 73px;"></th></tr>
+
+                                </tbody>
+                            </table>
+                            <div style="padding-bottom:30px">
+                                <input type="button" id="btnAdd" value="+" class="btn btn-success" style="font-size: 20px;padding-left: 15px;padding-right: 15px;">
+                                <input type="submit" id="btnSubmit" value="Nhập hàng" class="btn btn-success" style="font-size: 20px;padding-left: 15px;padding-right: 15px;">
+                                @{ if (ViewBag.ThongBao == "N")
+                                    {
+                                        <span id="TB" class="" style="color:red">Nhập hàng thành công</span>
+                                        <script>$(".trAppended").empty();</script>
+
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+

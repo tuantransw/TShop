@@ -7,7 +7,8 @@
     IEnumerable<SANPHAM> vBSanPhamMoi = (IEnumerable<SANPHAM>)ViewBag.vBSanPhamMoi;
     Layout = "~/Views/Shared/Layout/_HomeLayout.cshtml";
 }
-
+@Html.Partial("~/Views/TC/SlidePartial.cshtml")
+@Html.Partial("~/Views/TC/BannerPartial.cshtml")
 <!-- main area start -->
 <div class="main-area">
     <div class="container">
@@ -15,192 +16,33 @@
             <div class="col-lg-3 col-md-3 col-12 nopadding-right">
                 @*@Html.Partial("~/Views/LoaiSanPham/DanhMucSanPhamConPartial.cshtml",)*@
                 @Html.Action("DanhMucSanPhamPartial", "LoaiSanPham")
-                <!--aside 1 end-->
-                <aside>
-                    <div class="tag-area">
-                        <div class="area-title">
-                            <h3>Popular Tags</h3>
-                        </div>
-                        <ul class="aside-padd">
-                            <li> <a href="#">html5</a></li>
-                            <li> <a href="#">css3</a></li>
-                            <li> <a href="#">Joomla</a></li>
-                            <li> <a href="#">Jquery</a></li>
-                            <li> <a href="#">css</a></li>
-                            <li> <a href="#">Content</a></li>
-                            <li> <a href="#">clothing</a></li>
-                            <li> <a href="#">shoes</a></li>
-                            <li> <a href="#">gifts</a></li>
-                            <li> <a href="#">electronics</a></li>
-                        </ul>
-                    </div>
-                </aside>
-                <!--aside 2 end-->
-                <aside>
-                    <div class="newsletter-area">
-                        <div class="area-title">
-                            <h3>Newsletter</h3>
-                        </div>
-                        <div class="aside-padd">
-                            <div class="vina-newsletter">
-                                <form method="post" action="#">
-                                    <div class="input-box">
-                                        <label>Sign Up for Our Newsletter:</label>
-                                        <input type="email" placeholder="Email" name="email">
-                                    </div>
-                                    <div class="input-box">
-                                        <input type="submit" class="submit-btn" name="submit" value="Subscribe">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="web-links">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="rss">
-                                            <i class="fa fa-rss"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="ldin">
-                                            <i class="fa fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="#" class="face"><i class="fa fa-facebook"></i></a></li>
-                                    <li>
-                                        <a href="#" class="google">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-                <!--aside 3 end-->
-                <aside>
-                    <div class="hotsell-area">
-                        <div class="area-title">
-                            <h3>hot sale !</h3>
-                        </div>
-                        <div class="total-hotsell">
-                            <div class="single-hotsell aside-padd">
-                                <div class="hotsell-img">
-                                    <a href="#"><img src="img/product/books1.jpg" alt=""></a>
-                                </div>
-                                <div class="hotsell-text">
-                                    <a href="">Quisque in arcu</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <span class="new-price">$222.00</span>
-                                    <span class="old-rpice"><del>Sale:$250.00</del></span>
-                                </div>
-                            </div>
-                            <!--Single hotsell-->
-                            <div class="single-hotsell aside-padd">
-                                <div class="hotsell-img">
-                                    <a href="#"><img src="img/product/books2.jpg" alt=""></a>
-                                </div>
-                                <div class="hotsell-text">
-                                    <a href="">Quisque in arcu</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <span class="new-price">$222.00</span>
-                                    <span class="old-rpice"><del>Sale:$250.00</del></span>
-                                </div>
-                            </div>
-                            <!--Single hotsell-->
-                            <div class="single-hotsell aside-padd">
-                                <div class="hotsell-img">
-                                    <a href="#"><img src="img/product/product-1.jpg" alt=""></a>
-                                </div>
-                                <div class="hotsell-text">
-                                    <a href="">Quisque in arcu</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <span class="new-price">$222.00</span>
-                                    <span class="old-rpice"><del>Sale:$250.00</del></span>
-                                </div>
-                            </div>
-                            <!--Single hotsell-->
-                            <div class="single-hotsell aside-padd">
-                                <div class="hotsell-img">
-                                    <a href="#"><img src="img/product/product-3.jpg" alt=""></a>
-                                </div>
-                                <div class="hotsell-text">
-                                    <a href="">Quisque in arcu</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <span class="new-price">$222.00</span>
-                                    <span class="old-rpice"><del>Sale:$250.00</del></span>
-                                </div>
-                            </div>
-                            <!--Single hotsell-->
-                            <div class="single-hotsell aside-padd">
-                                <div class="hotsell-img">
-                                    <a href="#"><img src="img/product/books3.jpg" alt=""></a>
-                                </div>
-                                <div class="hotsell-text">
-                                    <a href="">Quisque in arcu</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <span class="new-price">$222.00</span>
-                                    <span class="old-rpice"><del>Sale:$250.00</del></span>
-                                </div>
-                            </div>
-                            <!--Single hotsell-->
-                            <div class="single-hotsell aside-padd">
-                                <div class="hotsell-img">
-                                    <a href="#"><img src="img/product/books4.jpg" alt=""></a>
-                                </div>
-                                <div class="hotsell-text">
-                                    <a href="">Quisque in arcu</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <span class="new-price">$222.00</span>
-                                    <span class="old-rpice"><del>Sale:$250.00</del></span>
-                                </div>
-                            </div>
-                            <!--Single hotsell-->
-                        </div>
-                        <!--total hotsell-->
-                    </div>
-                </aside>
+                @Html.Action("SanPhamBanChayPartial", "TC")
                 <!--aside 4 end-->
+                <!--aside 1 end-->
+
+                @Html.Action("DangKiNhanTinPartial", "TC")
+                <!--aside 3 end-->
+                @*<aside>
+                        <div class="tag-area">
+                            <div class="area-title">
+                                <h3>Popular Tags</h3>
+                            </div>
+                            <ul class="aside-padd">
+                                <li> <a href="#">html5</a></li>
+                                <li> <a href="#">css3</a></li>
+                                <li> <a href="#">Joomla</a></li>
+                                <li> <a href="#">Jquery</a></li>
+                                <li> <a href="#">css</a></li>
+                                <li> <a href="#">Content</a></li>
+                                <li> <a href="#">clothing</a></li>
+                                <li> <a href="#">shoes</a></li>
+                                <li> <a href="#">gifts</a></li>
+                                <li> <a href="#">electronics</a></li>
+                            </ul>
+                        </div>
+                    </aside>*@
+                <!--aside 2 end-->
+
             </div>
             <!--col-md-3-->
 
@@ -241,7 +83,15 @@
                                                             </a>
                                                         </div>
                                                         <div class="product-content">
-                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP.Substring(0, 28)...</a></h2>
+                                                            @if (item.TenSP.Length < 28)
+                                                            {
+                                                                <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP</a></h2>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP.Substring(0, 28)...</a></h2>
+                                                            }
+
                                                             <div class="rating">
                                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -307,7 +157,15 @@
                                                             </a>
                                                         </div>
                                                         <div class="product-content">
-                                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSP=item.MaSP})">@item.TenSP.Substring(0,28)...</a></h2>
+
+                                                            @if (item.TenSP.Length < 28)
+                                                            {
+                                                                <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP</a></h2>
+                                                            }
+                                                            else
+                                                            {
+                                                                <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { MaSp=item.MaSP})">@item.TenSP.Substring(0, 28)...</a></h2>
+                                                            }
                                                             <div class="rating">
                                                                 <a href="#"><i class="fa fa-star"></i></a>
                                                                 <a href="#"><i class="fa fa-star"></i></a>
@@ -5125,39 +4983,8 @@
                     </div>
                     <!--advertise area2 end-->
                     <!--brand crasoule-area-start-->
-                    <div class="brand-crasoule-area featur-padd">
-                        <!-- area title start -->
-                        <div class="area-title bdr mt20">
-                            <h2>Brand & Clients</h2>
-                        </div>
-                        <!-- area title end -->
-                        <div class="total-brand menu-carousel carousel-btn-2 carousel-btn mt10 mb20">
-                            <div class="single-brand">
-                                <img src="img/brand1.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand2.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand3.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand4.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand1.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand2.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand3.png" alt="">
-                            </div>
-                            <div class="single-brand">
-                                <img src="img/brand4.png" alt="">
-                            </div>
-                        </div>
-                    </div>
+
+                    @Html.Action("ThuongHieuPartial", "TC")
                     <!--brand crasoule-area-end-->
                 </div>
                 <!--ambit-key-->

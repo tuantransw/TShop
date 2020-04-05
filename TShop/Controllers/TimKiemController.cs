@@ -14,7 +14,7 @@ namespace TShop.Controllers
         public ActionResult KetQuaTimKiem(string TuKhoa,int? Page)
         {
 
-            var listSanPham = db.SANPHAMs.Where(n => n.TenSP.Contains(TuKhoa));
+            var listSanPham = db.SANPHAMs.Where(n => n.TenSP.Contains(TuKhoa) && n.Xoa == false);
             // Chức năng phân trang
             // Số sản phẩm trên trang
             int PageSize = 12;
@@ -25,12 +25,12 @@ namespace TShop.Controllers
         }
 
 
-        public ActionResult KetQuaTimKiemPartial(string TuKhoa)
-        {
-            var listSanPham = db.SANPHAMs.Where(n => n.TenSP.Contains(TuKhoa));
-            ViewBag.TuKhoa = TuKhoa;
+        //public ActionResult KetQuaTimKiemPartial(string TuKhoa)
+        //{
+        //    var listSanPham = db.SANPHAMs.Where(n => n.TenSP.Contains(TuKhoa));
+        //    ViewBag.TuKhoa = TuKhoa;
 
-            return PartialView(listSanPham.OrderBy(n=>n.DonGia));
-        }
+        //    return PartialView(listSanPham.OrderBy(n=>n.DonGia));
+        //}
     }
 }

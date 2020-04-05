@@ -1,11 +1,10 @@
 ﻿@using TShop.Models
 @using PagedList.Mvc;
-@model PagedList.IPagedList<SANPHAM>
+@model PagedList.IPagedList<NHASANXUAT>
 @{
-    ViewBag.Title = "XemSanPham";
+    ViewBag.Title = "XemNhaSanXuat";
     Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
 }
-
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -15,7 +14,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tất cả sản phẩm</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tất cả nhà sản xuất</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -46,23 +45,24 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 67px;">Mã sản phẩm</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 239px;">Tên sản phẩm</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 120px;">Đơn giá</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:80px;">Số lượng tồn</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 85px;">Hình ảnh</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 105px;">Ngày cập nhật</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;"></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;"></th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 110px;">Mã nhà sản xuất</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 200px;">Tên nhà sản xuất</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 230px;">Hình ảnh</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:390px;">Thông tin</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 80px;"></th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 80px;"></th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Mã sản phẩm</th><th rowspan="1" colspan="1">Tên sản phẩm</th><th rowspan="1" colspan="1">Đơn giá</th><th rowspan="1" colspan="1">Số lượng tồn</th><th rowspan="1" colspan="1">Hình ảnh</th><th rowspan="1" colspan="1">Ngày cập nhật</th><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"></th></tr>
+                                    <tr><th rowspan="1" colspan="1">Mã nhà sản xuất</th><th rowspan="1" colspan="1">Tên nhà sản xuất</th><th rowspan="1" colspan="1">Hình ảnh</th><th rowspan="1" colspan="1">Thông tin</th><th rowspan="1" colspan="1"></th><th rowspan="1" colspan="1"></th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1">@item.MaSP</td>
-                                            <td>@item.TenSP</td>
-                                            <td>@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</td>
-                                            <td>@item.SoLuongTon</td>
-                                            <td><img style="width:60px;height:60px;" class="primary-image" src="@Url.Content("~/Content/HinhAnh/"+@item.HinhAnh)" alt="" /></td>
-                                            <td>@item.NgayCapNhat</td>
-                                            <td><a href="@Url.Action("SuaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-warning">Sửa</a></td>
-                                            <td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>
+                                            <td class="sorting_1">@item.MaNSX</td>
+                                            <td>@item.TenNSX</td>
+
+                                            <td><img src="@Url.Content("~/Content/HinhAnh/ThuongHieu/"+item.HinhAnh)" /></td>
+
+                                            <td>@item.ThongTin</td>
+                                         
+                                            <td><a href="@Url.Action("SuaNhaSanXuat","Admin",new {@id=item.MaNSX})" class="btn btn-warning">Sửa</a></td>
+                                            <td><a href="@Url.Action("XoaNhaSanXuat","Admin",new {@id=item.MaNSX})" class="btn btn-danger">Xoá</a></td>
                                         </tr>
                                     }
 
@@ -85,12 +85,12 @@
                                         if (i == Model.PageNumber)
                                         {
                                             @*<li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
-                                            <li class="paginate_button page-item active"><a href="@Url.Action("XemSanPham","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            <li class="paginate_button page-item active"><a href="@Url.Action("XemNhaSanXuat","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
                                         }
                                         else
                                         {
                                             @*<li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
-                                            <li class="paginate_button page-item "><a href="@Url.Action("XemSanPham","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            <li class="paginate_button page-item "><a href="@Url.Action("XemNhaSanXuat","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
                                         }
 
 

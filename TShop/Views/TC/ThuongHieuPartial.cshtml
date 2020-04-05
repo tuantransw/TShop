@@ -1,0 +1,26 @@
+﻿@using TShop.Models;
+@model IEnumerable<NHASANXUAT>
+
+
+<!--brand crasoule-area-start-->
+<div class="brand-crasoule-area featur-padd">
+    <!-- area title start -->
+    <div class="area-title bdr mt20">
+        <h2>Thương hiệu được ưa thích</h2>
+    </div>
+    <!-- area title end -->
+    <div class="total-brand menu-carousel carousel-btn-2 carousel-btn mt10 mb20">
+        @foreach (var item in Model)
+        {
+            if (item.HinhAnh != null)
+            {
+                <div class="single-brand">
+                    <img src="@Url.Content("~/Content/HinhAnh/ThuongHieu/"+item.HinhAnh)" alt="">
+                </div>
+            }
+
+        }
+
+    </div>
+</div>
+<!--brand crasoule-area-end-->

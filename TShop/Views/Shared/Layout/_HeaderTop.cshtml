@@ -9,13 +9,13 @@
                     <nav>
                         <ul>
                             <li>
-                                <label><i class="fa fa-cog"></i>Tiền tệ: </label><a class="xero" href=""><span>VNĐ</span><i class="fa fa-angle-down"></i></a>
+                                <label><i class="fa fa-cog"></i>Tiền tệ: </label><a class="xero" href="#"><span>VNĐ</span><i class="fa fa-angle-down"></i></a>
                                 @*<ul>
                                         <li><a href="#">USD</a></li>
                                     </ul>*@
                             </li>
                             <li>
-                                <label><i class="fa fa-globe"></i>Ngôn ngữ: </label><a href=""><span>Tiếng Việt</span><i class="fa fa-angle-down"></i></a>
+                                <label><i class="fa fa-globe"></i>Ngôn ngữ: </label><a href="#"><span>Tiếng Việt</span><i class="fa fa-angle-down"></i></a>
                                 @*<ul>
                                         <li><a href="#">Brazilian</a></li>
                                         <li><a href="#">English</a></li>
@@ -38,7 +38,7 @@
                             @if (Session["TaiKhoan"] != null /*&& Session["TaiKhoan"] != ""*/)
                             {
                                 KHACHHANG KH = (KHACHHANG)Session["TaiKhoan"];
-                                <li><a>Chào @KH.TenKH :))</a></li>
+                                <li><a>Chào @KH.TenKH</a></li>
                                 <li><a href="@Url.Action("DangXuat","TrangChu")">Đăng xuất</a></li>
                             }
                             else
