@@ -1,0 +1,104 @@
+﻿@model TShop.Models.LOAISANPHAM
+@{
+    ViewBag.Title = "XoaLoaiSanPham";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Xoá loại sản phẩm</h6>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("XoaLoaiSanPham", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @*<h4>Cập nhật sản phẩm</h4>*@
+
+                    @*<hr />*@
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.Hidden("MaLSP", Model.MaLSP)
+
+                    @Html.Hidden("HinhAnh", Model.HinhAnh)
+
+                    @Html.Hidden("Xoa", Model.Xoa)
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Tên loại sản phẩm</label>
+                        @*@Html.LabelFor(model => model.TenSP, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TenLSP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenLSP, "", new { @class = "text-danger" })
+                            <span class="text-danger">@ViewBag.TenLSP</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Mã loại sản phẩm gốc</label>
+                        @*@Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MaLSPGoc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MaLSPGoc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Hình ảnh</label>
+                        @*@Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+
+                            <input type="file" name="HinhAnh" />
+
+
+                            @if (Model.HinhAnh != null)
+                            {
+                                <img src="@Url.Content("~/Content/Icon/"+Model.HinhAnh)" width="240px" height="150px" />
+
+                            }
+                            <span class="text-danger">@ViewBag.Upload</span>
+                            <span class="text-danger">@ViewBag.HinhAnh</span>
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Mô tả</label>
+                        @*@Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Bí danh</label>
+                        @*@Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.BiDanh, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BiDanh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <span class="text-danger">@ViewBag.ABC</span>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Xác nhận xoá" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div>
+                @Html.ActionLink("Trang trước", "XemLoaiSanPham")
+            </div>
+        </div>
+    </div>
+</div>
+

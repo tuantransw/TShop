@@ -637,22 +637,7 @@ namespace TShop.Controllers
             db.SaveChanges();
             return RedirectToAction("XemSanPham");
         }
-        [HttpGet]
-        public ActionResult DangNhap()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult DangNhap(FormCollection f)
-        {
-            return View();
-        }
-
-        public ActionResult ChuaGiao()
-        {
-            var donChuaGiao = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang == "Chưa giao").OrderBy(n => n.NgayDat);
-            return View(donChuaGiao);
-        }
+    
         public ActionResult XemNhaCungCap(int? Page)
         {
             // Số sản phẩm trên trang
@@ -854,7 +839,7 @@ namespace TShop.Controllers
             if (HinhAnh != null)
             {
                 var filename = Path.GetFileName(HinhAnh.FileName);
-                var path = Path.Combine(Server.MapPath("~/Content/HinhAnh/ThuongHieu/"), filename);
+                var path = Path.Combine(Server.MapPath("~/Content/HinhAnh/ThuongHieu"), filename);
                 HinhAnh.SaveAs(path);
                 nsx.HinhAnh = filename;
             }
@@ -910,6 +895,16 @@ namespace TShop.Controllers
             db.SaveChanges();
             return RedirectToAction("XemNhaSanXuat");
         }
+        public ActionResult XemLoaiSanPham(int? Page)
+        {
+            // Số sản phẩm trên trang
+            int PageSize = 10;
+            // Trang hiện tại
+            int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
+
+            var lsp = db.LOAISANPHAMs.Where(n => n.Xoa == false).ToList();
+            return View(lsp.OrderBy(n => n.MaLSP).ToPagedList(PageNumber, PageSize));
+        }
         [HttpGet]
         public ActionResult ThemLoaiSanPham()
         {
@@ -954,6 +949,95 @@ namespace TShop.Controllers
             return View();
 
         }
+        public ActionResult SuaLoaiSanPham(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+
+            }
+            LOAISANPHAM lsp = db.LOAISANPHAMs.SingleOrDefault(n => n.MaLSP == id);
+            if (lsp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(lsp);
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult SuaLoaiSanPham(LOAISANPHAM lsp, HttpPostedFileBase HinhAnh)
+        {
+        
+            //var SP = db.SANPHAMs.SingleOrDefault(n => n.MaSP == sp.MaSP);
+            if (lsp.TenLSP == null)
+            {
+                ViewBag.TenLSP = "Nhập tên loại sản phẩm";
+                return View(lsp);
+            }
+            //if (sp.TenSP != SP.TenSP && SP != null)
+            //{
+            //    ViewBag.TenSP = "Sản phẩm đã tồn tại";
+            //    return View(sp);
+            //}
+            if (HinhAnh != null)
+            {
+                var filename = Path.GetFileName(HinhAnh.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Icon"), filename);
+                HinhAnh.SaveAs(path);
+                lsp.HinhAnh = filename;
+            
+
+            }
+
+            db.Entry(lsp).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("XemloaiSanPham");
+        }
+        public ActionResult XoaLoaiSanPham(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            LOAISANPHAM lsp = db.LOAISANPHAMs.SingleOrDefault(n => n.MaLSP == id);
+            if (lsp == null)
+            {
+                return HttpNotFound();
+            }
+    
+            return View(lsp);
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult XoaLoaiSanPham(LOAISANPHAM lsp, HttpPostedFileBase HinhAnh)
+        {
+
+            //var SP = db.SANPHAMs.SingleOrDefault(n => n.MaSP == sp.MaSP);
+            if (lsp.TenLSP == null)
+            {
+                ViewBag.TenLSP = "Nhập tên loại sản phẩm";
+                return View(lsp);
+            }
+   
+            if (HinhAnh != null)
+            {
+                var filename = Path.GetFileName(HinhAnh.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Icon"), filename);
+                HinhAnh.SaveAs(path);
+                lsp.HinhAnh = filename;
+               
+
+            }
+            lsp.Xoa = true;
+            db.Entry(lsp).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("XemloaiSanPham");
+        }
+
+
         public ActionResult KetQuaTimKiem(string TuKhoa, int? Page)
         {
 
@@ -982,6 +1066,49 @@ namespace TShop.Controllers
         {
             var emp = db.SANPHAMs.Where(p => p.TenSP.Contains(ename) && p.Xoa == false).Select(p => p.MaSP + " - " + p.TenSP).Take(10).ToList();
             return Json(emp);
+        }
+
+
+        [HttpGet]
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DangNhap(FormCollection f)
+        {
+            return View();
+        }
+
+        public ActionResult ChoXacNhan(int? Page)
+        {
+            // Số sản phẩm trên trang
+            int PageSize = 10;
+            // Trang hiện tại
+            int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
+
+            var cxn = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang == "cxn" && n.Xoa==false).OrderBy(n => n.NgayDat);
+            return View(cxn.OrderBy(n => n.MaDDH).ToPagedList(PageNumber, PageSize));
+        }
+        public ActionResult ChuaGiaoDaThanhToan(int? Page)
+        {
+            // Số sản phẩm trên trang
+            int PageSize = 10;
+            // Trang hiện tại
+            int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
+
+            var donChuaGiao = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang == "cgdtt" && n.Xoa == false).OrderBy(n => n.NgayDat);
+            return View(donChuaGiao.OrderBy(n => n.MaDDH).ToPagedList(PageNumber, PageSize));
+        }
+        public ActionResult ChuaGiaoTest(int? Page)
+        {
+            // Số sản phẩm trên trang
+            int PageSize = 10;
+            // Trang hiện tại
+            int PageNumber = (Page ?? 1);// Nếu không có giá trị thì bằng 1
+
+            var donChuaGiao = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang == "Chưa giao" && n.Xoa == false).OrderBy(n => n.NgayDat);
+            return View(donChuaGiao.OrderBy(n => n.MaDDH).ToPagedList(PageNumber, PageSize));
         }
     }
 }

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TShop.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "ChuaGiaoTest";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+<h2>ChuaGiaoTest</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayGiao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TinhTrangGiaoHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaThanhToan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HuyDatHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Xoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KHACHHANG.TenKH)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrangGiaoHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaThanhToan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HuyDatHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Xoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.TenKH)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaDDH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaDDH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaDDH })
+        </td>
+    </tr>
+}
+
+</table>

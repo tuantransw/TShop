@@ -2350,7 +2350,7 @@
     <Content Include="Views\TC\SlidePartial.cshtml" />
     <Content Include="Views\TC\BannerPartial.cshtml" />
     <Content Include="Views\QuanLyPhieuNhap\NhapHang.cshtml" />
-    <Content Include="Views\Admin\ChuaGiao.cshtml" />
+    <Content Include="Views\Admin\ChoXacNhan.cshtml" />
     <Content Include="Views\Admin\KetQuaTimKiem.cshtml" />
     <Content Include="Views\Admin\ThemNhaCungCap.cshtml" />
     <Content Include="Views\Admin\ThemNhaSanXuat.cshtml" />
@@ -2361,6 +2361,10 @@
     <Content Include="Views\Admin\XoaNhaCungCap.cshtml" />
     <Content Include="Views\Admin\SuaNhaSanXuat.cshtml" />
     <Content Include="Views\Admin\XoaNhaSanXuat.cshtml" />
+    <Content Include="Views\Admin\XemLoaiSanPham.cshtml" />
+    <Content Include="Views\Admin\SuaLoaiSanPham.cshtml" />
+    <Content Include="Views\Admin\XoaLoaiSanPham.cshtml" />
+    <Content Include="Views\Admin\ChuaGiaoTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
