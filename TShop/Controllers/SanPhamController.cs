@@ -186,5 +186,17 @@ namespace TShop.Controllers
             //ViewBag.TenLSP = lsp.TenLSP;
             //return View(sP1.OrderBy(n=>n.MaSP).ToPagedList(PageNumber,PageSize));
         }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (db != null)
+                    db.Dispose();
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

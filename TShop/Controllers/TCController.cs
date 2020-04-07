@@ -41,5 +41,15 @@ namespace TShop.Controllers
             var SPBC = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa==false).ToList();
             return PartialView(SPBC);
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (db != null)
+                    db.Dispose();
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

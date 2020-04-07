@@ -31,8 +31,8 @@
             <PropertyRef Name="MaDDH" />
           </Key>
           <Property Name="MaDDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NgayDat" Type="date" />
-          <Property Name="NgayGiao" Type="date" />
+          <Property Name="NgayDat" Type="datetime" />
+          <Property Name="NgayGiao" Type="datetime" />
           <Property Name="MaKH" Type="int" />
           <Property Name="TinhTrangGiaoHang" Type="nvarchar" MaxLength="50" />
           <Property Name="DaThanhToan" Type="bit" />
@@ -317,8 +317,8 @@
             <PropertyRef Name="MaDDH" />
           </Key>
           <Property Name="MaDDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NgayDat" Type="DateTime" Precision="0" />
-          <Property Name="NgayGiao" Type="DateTime" Precision="0" />
+          <Property Name="NgayDat" Type="DateTime" Precision="3" />
+          <Property Name="NgayGiao" Type="DateTime" Precision="3" />
           <Property Name="MaKH" Type="Int32" />
           <Property Name="TinhTrangGiaoHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DaThanhToan" Type="Boolean" />

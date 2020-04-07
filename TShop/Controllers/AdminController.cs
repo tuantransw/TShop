@@ -1,11 +1,12 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using TShop.Models;
-using PagedList;
-using System.IO;
 namespace TShop.Controllers
 {
     public class AdminController : Controller
@@ -112,6 +113,12 @@ namespace TShop.Controllers
         //}
         public ActionResult Index()
         {
+            ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString();
+            ViewBag.SoNguoiOnline = HttpContext.Application["Online"].ToString();
+            ViewBag.ThongKeTongDoanhThu = ThongKeTongDoanhThu();
+            //ViewBag.ThongKeDoanhThuThang = ThongKeDoanhThuThang();
+            ViewBag.ThongKeDonHang = ThongKeDonHang();
+            ViewBag.ThongKeKhachHang = ThongKeKhachHang();
             return View();
         }
 
@@ -1090,6 +1097,43 @@ namespace TShop.Controllers
             var cxn = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang == "cxn" && n.Xoa==false).OrderBy(n => n.NgayDat);
             return View(cxn.OrderBy(n => n.MaDDH).ToPagedList(PageNumber, PageSize));
         }
+        public ActionResult DuyetDonHang(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            DONDATHANG ddh = db.DONDATHANGs.SingleOrDefault(n => n.MaDDH == id);
+            if (ddh == null)
+            {
+                return HttpNotFound();
+            }
+            var listCTDDH = db.CHITIETDONDATHANGs.Where(n => n.MaDDH == id);
+            ViewBag.listCTDDH = listCTDDH;
+            return View(ddh);
+        }
+        [HttpPost]
+        public ActionResult DuyetDonHang(DONDATHANG ddh)
+        {
+      
+            DONDATHANG luuddh = db.DONDATHANGs.SingleOrDefault(n => n.MaDDH == ddh.MaDDH);
+           
+            luuddh.TinhTrangGiaoHang = "dxn";
+            if (ddh.DaThanhToan == null)
+            {
+                luuddh.DaThanhToan = false;
+            }
+            else
+            { luuddh.DaThanhToan = ddh.DaThanhToan; }
+                db.SaveChanges();
+            var listCTDDH = db.CHITIETDONDATHANGs.Where(n => n.MaDDH == ddh.MaDDH);
+            ViewBag.listCTDDH = listCTDDH;
+            GuiEmail("Xác nhận mua hàng Tshop", "tuantran.sw@gmail.com", "tshop.tuantran.sw@gmail.com", "abc@123Abc", "Đơn mua của bạn đã được xác nhận thành công. Đơn hàng sẽ được gửi đến trong vài ngày.");
+            ViewBag.ThongBao = "Lưu đơn hàng thành công.";
+            ViewBag.ThongBao1 = "Gửi email thông báo cho khách hàng thành công.";
+            return View(luuddh);
+        }
         public ActionResult ChuaGiaoDaThanhToan(int? Page)
         {
             // Số sản phẩm trên trang
@@ -1109,6 +1153,69 @@ namespace TShop.Controllers
 
             var donChuaGiao = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang == "Chưa giao" && n.Xoa == false).OrderBy(n => n.NgayDat);
             return View(donChuaGiao.OrderBy(n => n.MaDDH).ToPagedList(PageNumber, PageSize));
+        }
+
+        public void GuiEmail(string Title,string ToEmail,string FromEmail,string PassWord,string Content)
+        {
+            MailMessage mail = new MailMessage();
+            mail.To.Add(ToEmail);
+            mail.From = new MailAddress(ToEmail);
+            mail.Subject = Title;
+            mail.Body = Content;
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new System.Net.NetworkCredential
+            (FromEmail, PassWord);
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
+        }
+
+        public decimal ThongKeTongDoanhThu()
+        {
+            //decimal TongDoanhThu = db.CHITIETDONDATHANGs.Where(n=>n.DONDATHANG.TinhTrangGiaoHang=="dg").Sum(n => n.SoLuong * n.DonGia).Value;
+            var listDDH = db.DONDATHANGs.Where(n => n.TinhTrangGiaoHang=="dg");
+            decimal tongtien = 0;
+            foreach (var item in listDDH)
+            {
+                tongtien += decimal.Parse(item.CHITIETDONDATHANGs.Sum(n => n.SoLuong * n.DonGia).Value.ToString());
+            }
+
+            return tongtien;
+        }
+        public decimal ThongKeDoanhThuThang(int Thang,int Nam)
+        {
+            var listDDH = db.DONDATHANGs.Where(n => n.NgayDat.Value.Month == Thang && n.NgayDat.Value.Year == Nam);
+            decimal tongtien = 0;
+            foreach(var item in listDDH)
+            {
+                tongtien += decimal.Parse(item.CHITIETDONDATHANGs.Sum(n => n.SoLuong * n.DonGia).Value.ToString());
+            }
+     
+            return tongtien;
+        }
+        public double ThongKeDonHang()
+        {
+            double ddh = db.DONDATHANGs.Count();
+            return ddh;
+        }
+        public double ThongKeKhachHang()
+        {
+            double kh = db.KHACHHANGs.Count();
+            return kh;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (db != null)
+                    db.Dispose();
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -32,5 +32,15 @@ namespace TShop.Controllers
 
         //    return PartialView(listSanPham.OrderBy(n=>n.DonGia));
         //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (db != null)
+                    db.Dispose();
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

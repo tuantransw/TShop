@@ -36,33 +36,33 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1">@item.MaDDH</td>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">@item.MaDDH</td>
 
-                                        <td>@Html.DisplayFor(modelItem => item.KHACHHANG.TenKH)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.KHACHHANG.TenKH)</td>
 
-                                        <td>@item.NgayDat</td>
-                                        <td>@item.NgayGiao</td>
-                                        @{
-                                            if (item.TinhTrangGiaoHang == "cxn")
-                                            {
-                                                <td>Chờ xác nhận</td>
+                                            <td>@item.NgayDat</td>
+                                            <td>@item.NgayGiao</td>
+                                            @{
+                                                if (item.TinhTrangGiaoHang == "cxn")
+                                                {
+                                                    <td>Chờ xác nhận</td>
+                                                }
                                             }
-                                        }
-                                        @{
-                                            if (item.DaThanhToan == true)
-                                            {
-                                                <td>Đã thanh toán</td>
+                                            @{
+                                                if (item.DaThanhToan == true)
+                                                {
+                                                    <td>Đã thanh toán</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa thanh toán</td>
+                                                }
                                             }
-                                            else
-                                            {
-                                                <td>Chưa thanh toán</td>
-                                            }
-                                        }
 
-                                        <td><a href="@Url.Action("DuyetDonHang","Admin",new {@id=item.MaDDH})" class="btn btn-warning">Duyệt đơn hàng</a></td>
-                                        @*<td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
-                                    </tr>
+                                            <td><a href="@Url.Action("DuyetDonHang","Admin",new {@id=item.MaDDH})" class="btn btn-warning">Duyệt đơn hàng</a></td>
+                                            @*<td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
+                                        </tr>
                                     }
 
 

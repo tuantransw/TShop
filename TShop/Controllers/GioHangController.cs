@@ -203,12 +203,12 @@ namespace TShop.Controllers
                 //khachHang.Email = kh.Email;
                 //db.KHACHHANGs.Add(khachHang);
                 //db.SaveChanges();
-
+                DateTime dt = DateTime.Now;
                 DONDATHANG donDatHang = new DONDATHANG();
-                donDatHang.NgayDat = DateTime.Today;
+                donDatHang.NgayDat = dt;
                 donDatHang.MaKH = kh.MaKH;
                 donDatHang.NgayGiao = null;
-                donDatHang.TinhTrangGiaoHang = "Chưa giao";
+                donDatHang.TinhTrangGiaoHang = "cxn";
                 donDatHang.DaThanhToan = false;
                 donDatHang.HuyDatHang = false;
                 donDatHang.Xoa = false;
@@ -270,6 +270,17 @@ namespace TShop.Controllers
                 return RedirectToAction("TienHanhDatHang");
             }
             return RedirectToAction("TienHanhDatHang");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (db != null)
+                    db.Dispose();
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
