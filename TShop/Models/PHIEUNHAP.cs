@@ -24,9 +24,11 @@ namespace TShop.Models
         public Nullable<int> MaNCC { get; set; }
         public Nullable<System.DateTime> NgayNhap { get; set; }
         public Nullable<bool> Xoa { get; set; }
+        public Nullable<int> MaTV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETPHIEUNHAP> CHITIETPHIEUNHAPs { get; set; }
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
+        public virtual THANHVIEN THANHVIEN { get; set; }
     }
 }

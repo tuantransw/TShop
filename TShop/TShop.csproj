@@ -138,6 +138,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DangNhapAdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Controllers\QuanLyPhieuNhapController.cs" />
@@ -190,10 +192,19 @@
     <Compile Include="Models\PHIEUNHAP.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\QUYENHAN.cs">
+      <DependentUpon>ModelTShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QUYENHANTHANHVIEN.cs">
+      <DependentUpon>ModelTShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SANPHAM.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>ModelTShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THANHVIEN.cs">
       <DependentUpon>ModelTShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1857,6 +1868,9 @@
     <Content Include="Content\HinhAnh\cz430-01.jpg" />
     <Content Include="Content\HinhAnh\cz430-02.jpg" />
     <Content Include="Content\HinhAnh\cz430-16gb.jpg" />
+    <Content Include="Content\HinhAnh\cz600-01-5070df8a-e72a-45f1-91da-33357c56b998.jpg" />
+    <Content Include="Content\HinhAnh\cz600-02-de8c4170-04e6-4039-90f6-f6ed21a198fb.jpg" />
+    <Content Include="Content\HinhAnh\cz600-32gb.jpg" />
     <Content Include="Content\HinhAnh\dt-100-g3-16-01.jpg" />
     <Content Include="Content\HinhAnh\dt-100-g3-16-02.jpg" />
     <Content Include="Content\HinhAnh\dt-100-g3-16-03.jpg" />
@@ -1911,6 +1925,10 @@
     <Content Include="Content\HinhAnh\ram-pc-crucial-ballistix-sport-lt-9.jpg" />
     <Content Include="Content\HinhAnh\sandisk-ex-500-08.jpg" />
     <Content Include="Content\HinhAnh\sandisk-ex-500-09.jpg" />
+    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-09.jpg" />
+    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-10.jpg" />
+    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-11.jpg" />
+    <Content Include="Content\HinhAnh\sandisk-ultra-flair-cz73-16.jpg" />
     <Content Include="Content\HinhAnh\sd-extreme600x-v30-032-01.jpg" />
     <Content Include="Content\HinhAnh\sd-extreme600x-v30-032-02.jpg" />
     <Content Include="Content\HinhAnh\seagate-expansion-07.jpg" />
@@ -1954,6 +1972,7 @@
     <Content Include="Content\HinhAnh\wd-my-passport-go-ssd-19.jpg" />
     <Content Include="Content\HinhAnh\wd5000azrz-ff6a79ce-68a4-41e5-b6c3-4f3906afbdf3.jpg" />
     <Content Include="Content\HinhAnh\wd60ezaz-a6db9e2a-5169-4f5f-b2a0-70712d310b85.jpg" />
+    <Content Include="Content\HinhAnh\wdblack-pcie-sn750-01.jpg" />
     <Content Include="Content\HinhAnh\wdblack-pcie-sn750-03-0e537334-b503-406c-acab-790a7eda07b4.jpg" />
     <Content Include="Content\HinhAnh\wdblack-pcie-sn750-04-bc3c0619-625c-4e60-819f-4b82b98229d0.jpg" />
     <Content Include="Content\HinhAnh\western-digital-my-passport-1tb-new-2017-blue.jpg" />
@@ -2187,7 +2206,59 @@
     <Content Include="Content\js\vendor\jquery-1.11.3.min.js" />
     <Content Include="Content\js\vendor\modernizr-2.8.3.min.js" />
     <Content Include="Content\js\wow.js" />
+    <Content Include="Content\LoginAdmin\css\main.css" />
+    <Content Include="Content\LoginAdmin\css\util.css" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\LoginAdmin\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Content\LoginAdmin\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\OFL.txt" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\UFL.txt" />
+    <Content Include="Content\LoginAdmin\images\icons\favicon.ico" />
+    <Content Include="Content\LoginAdmin\images\icons\icon-google.png" />
+    <Content Include="Content\LoginAdmin\images\icons\map-marker.png" />
+    <Content Include="Content\LoginAdmin\images\icons\symbol-01.png" />
+    <Content Include="Content\LoginAdmin\js\main.js" />
+    <Content Include="Content\LoginAdmin\vendor\animate\animate.css" />
+    <Content Include="Content\LoginAdmin\vendor\animsition\css\animsition.css" />
+    <Content Include="Content\LoginAdmin\vendor\animsition\css\animsition.min.css" />
+    <Content Include="Content\LoginAdmin\vendor\animsition\js\animsition.js" />
+    <Content Include="Content\LoginAdmin\vendor\animsition\js\animsition.min.js" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\js\popper.js" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="Content\LoginAdmin\vendor\countdowntime\countdowntime.js" />
+    <Content Include="Content\LoginAdmin\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\LoginAdmin\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\LoginAdmin\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\LoginAdmin\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\LoginAdmin\vendor\daterangepicker\moment.js" />
+    <Content Include="Content\LoginAdmin\vendor\daterangepicker\moment.min.js" />
+    <Content Include="Content\LoginAdmin\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Content\LoginAdmin\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\LoginAdmin\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\LoginAdmin\vendor\select2\select2.css" />
+    <Content Include="Content\LoginAdmin\vendor\select2\select2.js" />
+    <Content Include="Content\LoginAdmin\vendor\select2\select2.min.css" />
+    <Content Include="Content\LoginAdmin\vendor\select2\select2.min.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\SlideImg\rsz_2-860pro_pc.jpg" />
+    <Content Include="Content\SlideImg\rsz_3-kf-860qvo-pc.jpg" />
+    <Content Include="Content\SlideImg\rsz_860_evo_05.jpg" />
+    <Content Include="Content\SlideImg\rsz_t7-touch-2.jpg" />
+    <Content Include="Content\SlideImg\SSD_970evo_kv_pc_kv.jpg" />
+    <Content Include="Content\SlideImg\SSD_970pro_kv_pc_kv.jpg" />
+    <Content Include="Content\SlideImg\t7-touch-5.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -2389,6 +2460,93 @@
     <Content Include="Content\admin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\admin\vendor\jquery\jquery.min.map" />
     <Content Include="Content\admin\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\LoginAdmin\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\LoginAdmin\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Content\LoginAdmin\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Content\LoginAdmin\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-BoldItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-Italic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-LightItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-MediumItalic.ttf" />
+    <Content Include="Content\LoginAdmin\fonts\ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\LoginAdmin\vendor\bootstrap\css\bootstrap.min.css.map" />
     <None Include="Properties\PublishProfiles\WebProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2453,10 +2611,26 @@
     <Content Include="Views\Admin\ChuaGiaoTest.cshtml" />
     <Content Include="Views\Admin\DuyetDonHang.cshtml" />
     <Content Include="Views\Admin\ThongKe.cshtml" />
+    <Content Include="Views\Admin\TaiKhoan.cshtml" />
+    <Content Include="Views\Admin\DangNhap.cshtml" />
+    <Content Include="Views\DangNhapAdmin\Index.cshtml" />
+    <Content Include="Views\Shared\Layout\_AdminHeaderTop.cshtml" />
+    <Content Include="Views\Admin\DangGiao.cshtml" />
+    <Content Include="Views\Admin\DaHoanThanh.cshtml" />
+    <Content Include="Views\Admin\DuyetDonHangDangGiao.cshtml" />
+    <Content Include="Views\Admin\XemDonHang.cshtml" />
+    <Content Include="Views\Admin\DonDaHuy.cshtml" />
+    <Content Include="Views\Admin\TatCaThanhVien.cshtml" />
+    <Content Include="Views\Admin\PhanQuyenAD.cshtml" />
+    <Content Include="Views\TC\LuaChonTotNhatPartial.cshtml" />
+    <Content Include="Views\Admin\TatCaPhieuNhapHang.cshtml" />
+    <Content Include="Views\Admin\ChiTietPhieuNhapHang.cshtml" />
+    <Content Include="Views\Admin\TatCaPhieuNhapHangDaXoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fonts\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

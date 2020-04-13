@@ -1,0 +1,151 @@
+﻿@using TShop.Models;
+@model DONDATHANG
+@{
+    ViewBag.Title = "DuyetDonHangDangGiao";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+@{
+    IEnumerable<CHITIETDONDATHANG> ctddh = (IEnumerable<CHITIETDONDATHANG>)ViewBag.listCTDDH;
+}
+<style>
+    .table-responsivea {
+        display: block;
+        width: 100%;
+        /* overflow-x: auto; */
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    @*<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>*@
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Duyệt đơn hàng đang giao</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsivea">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    @using (Html.BeginForm())
+                    {
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div style="margin-bottom:10px;">
+
+                                    <label style="margin-right: 30px;">Mã đơn hàng: @Model.MaDDH @Html.Hidden("MaDDH", Model.MaDDH)</label>
+                                    <label style="margin-right:30px;">Mã khách hàng: @Model.MaKH @Html.Hidden("MaKH", Model.MaKH)</label>
+                                    <label style="margin-right:30px;">Tên khách hàng: @Model.KHACHHANG.TenKH</label>
+                                    <label style="margin-right:30px;">Ngày đặt: @Model.NgayDat @Html.Hidden("NgayDat", Model.NgayDat)</label>
+                                    <div>
+                                        <label style="margin-right:30px;">Địa chỉ giao hàng: @Model.KHACHHANG.DiaChi</label>
+                                        <label style="margin-right:30px;">Số điện thoại: @Model.KHACHHANG.SoDienThoai</label>
+                                        @{
+                                            if (Model.DaThanhToan == true)
+                                            {
+                                                <label style="margin-right:30px;">Thanh toán: Đã thanh toán</label>
+                                            }
+                                            else
+                                            {
+                                                <label style="margin-right:15px;">Thanh toán: Chưa thanh toán</label>
+                                                <label style="font-size:10px;"><input name="DaThanhToan" type="checkbox" value="true" />(Đã thanh toán)</label>
+                                            }
+                                        }
+                                    </div>
+                                    
+                                    @Html.Hidden("NgayGiao", Model.NgayGiao)
+                                    @Html.Hidden("Xoa", Model.Xoa)
+                                    @Html.Hidden("HuyDatHang", Model.HuyDatHang)
+                                    
+
+                                    @*<label>@Model.KHACHHANG.TenKH</label>*@
+                                </div>
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 530px;">Tên sản phẩm</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 120px;">Hình ảnh</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 120px;">Số lượng đặt</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:180px;">Đơn giá</th></tr>
+                                    </thead>
+                                    @*<tfoot>
+                            <tr><th rowspan="1" colspan="1">Tên sản phẩm</th><th rowspan="1" colspan="1">Hình ảnh</th><th rowspan="1" colspan="1">Số lượng đặt</th><th rowspan="1" colspan="1">Đơn giá</th></tr>
+                        </tfoot>*@
+                                    <tbody>
+                                        @{
+                                            int i = 0;
+                                            double tongtien = 0;
+
+                                        }
+                                        @foreach (var item in ctddh)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">@item.TenSP</td>
+                                                <td><img style="width:60px;height:60px;" class="primary-image" src="@Url.Content("~/Content/HinhAnh/" + @item.SANPHAM.HinhAnh)" alt="" /></td>
+                                                <td>@item.SoLuong</td>
+                                                <td>@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</td>
+
+                                                @*<td><a href="@Url.Action("SuaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-warning">Sửa</a></td>
+                                    <td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
+                                            </tr>
+                                            i = i + int.Parse(item.SoLuong.ToString());
+                                            tongtien = tongtien + (double.Parse(item.DonGia.ToString()) * int.Parse(item.SoLuong.ToString()));
+                                        }
+
+
+                                    </tbody>
+
+                                </table>
+                                <div style="width:100%;margin-top:10px;margin-bottom:10px; text-align:right;">
+                                    <div>
+                                        <label>Tổng số lượng sản phẩm: @i sản phẩm</label>
+                                    </div>
+                                    @{var tong = String.Format("{0:0,0 VNĐ}", tongtien);}
+                                    <label>Tổng tiền: @tong</label>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-success">@ViewBag.ThongBao</span>
+                        @*<span class="text-success">@ViewBag.ThongBao1</span>*@
+                <div style="margin-top:10px;">
+
+
+
+                    @*<input id="btnInDonHang" class="btn btn-success" type="button" value="In hoá đơn" />*@
+                    <input class="btn btn-success" type="submit" value="Hoàn thành đơn hàng" />
+                    @*<input id="btnHuyDonHang" class="btn btn-danger" type="button" value="Huỷ đơn hàng" />*@
+                    <a href="@Url.Action("HuyDonHangDangGiao","Admin",new {@id=Model.MaDDH})" onclick="return checkDelete()" class="btn btn-danger">Huỷ đơn hàng</a>
+                </div>
+                    }
+                </div>
+            </div>
+            <div style="margin-top:10px">
+                @Html.ActionLink("Về trang trước", "DangGiao")
+            </div>
+
+
+            <script>
+                 function checkDelete() {
+                    return confirm('Bạn có chắc chắn muốn huỷ đơn hàng?');
+                };
+
+                $("#btnInDonHang").click(function () {
+                    var content = $(".row").html();
+                    InDonHang(content);
+                });
+                function InDonHang(content) {
+                    var printWindow = window.open('', '', 'height=400,width=1280');
+                    printWindow.document.write('<html><heal><title></title>');
+                    printWindow.document.write('</head><body>');
+                    printWindow.document.write('<div style="font-size:50px; margin-top:10px;margin-bottom:10px;">TShop</div>')
+                    printWindow.document.write(content);
+                    printWindow.document.write('</body></html>');
+                    printWindow.document.close();
+                    printWindow.print();
+                }
+            </script>
+        </div>
+    </div>
+
+</div>
+@*<div style="font-size:50px">TShop</div>*@
+

@@ -60,7 +60,13 @@
                                             <td>@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</td>
                                             <td>@item.SoLuongTon</td>
                                             <td><img style="width:60px;height:60px;" class="primary-image" src="@Url.Content("~/Content/HinhAnh/"+@item.HinhAnh)" alt="" /></td>
-                                            <td>@item.NgayCapNhat</td>
+                                            <td>
+                                                @if (item.NgayCapNhat != null)
+                                                {
+                                                    @item.NgayCapNhat.Value.ToString("dd/MM/yyyy h:mm tt")
+                                                }
+                                            </td>
+                                            
                                             <td><a href="@Url.Action("SuaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-warning">Sửa</a></td>
                                             <td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>
                                         </tr>

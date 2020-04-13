@@ -38,8 +38,13 @@ namespace TShop.Controllers
         }
         public PartialViewResult SieuGiamGiaSanPhamPartial()
         {
-            var SPBC = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa==false).ToList();
+            var SPBC = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa==false&&n.SoLuongTon!=null ).ToList();
             return PartialView(SPBC);
+        }
+        public PartialViewResult LuaChonTotNhatPartial()
+        {
+            var LCTN = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false).ToList();
+            return PartialView(LCTN);
         }
         protected override void Dispose(bool disposing)
         {

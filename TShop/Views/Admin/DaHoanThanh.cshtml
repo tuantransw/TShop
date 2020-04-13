@@ -1,0 +1,116 @@
+﻿@using TShop.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DONDATHANG>
+@{
+    ViewBag.Title = "DaHoanThanh";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        @*<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>*@
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Đơn đặt hàng đã hoàn thành</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 67px;">Mã đơn đặt hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 239px;">Tên khách hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 158px;">Ngày đặt</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:158px;">Ngày giao</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 160px;">Tình trạng đơn hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 105px;">Đã thanh toán</th><th style="width:163px;"></th></tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">Mã đơn đặt hàng</th><th rowspan="1" colspan="1">Tên khách hàng</th><th rowspan="1" colspan="1">Ngày đặt</th><th rowspan="1" colspan="1">Ngày giao</th><th rowspan="1" colspan="1">Tình trạng đơn hàng</th><th rowspan="1" colspan="1">Đã thanh toán</th><th></th></tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">@item.MaDDH</td>
+
+                                                <td>@Html.DisplayFor(modelItem => item.KHACHHANG.TenKH)</td>
+
+                                                <td>@item.NgayDat</td>
+                                                <td>@item.NgayGiao</td>
+                                                @{
+                                                    if (item.TinhTrangGiaoHang == "ht")
+                                                    {
+                                                        <td>Hoàn thành</td>
+                                                    }
+                                                }
+                                                @{
+                                                    if (item.DaThanhToan == true)
+                                                    {
+                                                        <td>Đã thanh toán</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Chưa thanh toán</td>
+                                                    }
+                                                }
+
+                                                <td><a href="@Url.Action("XemDonHang","Admin",new {@id=item.MaDDH})" class="btn btn-warning">Xem đơn hàng</a></td>
+                                                @*<td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</div>
+                            </div><div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                                    <ul class="pagination">
+                                        @*<li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                        </li>*@
+                                        @for (int i = 1; i <= Model.PageCount; i++)
+                                        {
+                                            if (i == Model.PageNumber)
+                                            {
+                                                @*<li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
+                                                <li class="paginate_button page-item active"><a href="@Url.Action("DaHoanThanh","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            }
+                                            else
+                                            {
+                                                @*<li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
+                                                <li class="paginate_button page-item "><a href="@Url.Action("DaHoanThanh","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            }
+
+
+                                        }
+                                        @*<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                        <li class="paginate_button page-item ">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+                                        </li>
+                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>*@
+                                        @*<li class="paginate_button page-item next" id="dataTable_next">
+                                            <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                        </li>*@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+

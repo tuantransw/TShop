@@ -1,0 +1,100 @@
+﻿@using TShop.Models;
+@model THANHVIEN
+@{
+    ViewBag.Title = "PhanQuyenAD";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+@{
+    IEnumerable<QUYENHANTHANHVIEN> listQHTV = (IEnumerable<QUYENHANTHANHVIEN>)ViewBag.listQHTV;
+    IEnumerable<QUYENHAN> listQ = (IEnumerable<QUYENHAN>)ViewBag.listQ;
+}
+<style>
+    .table-responsivea {
+        display: block;
+        width: 100%;
+        /* overflow-x: auto; */
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    @*<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>*@
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Phân quyền</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsivea">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    @using (Html.BeginForm())
+                    {
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div style="margin-bottom:10px;">
+
+                                    <label style="margin-right: 30px;">Mã thành viên: @Model.MaTV @Html.Hidden("MaTV", Model.MaTV)</label>
+                                    <label style="margin-right:30px;">Tên thành viên: @Model.TenTV @Html.Hidden("TenTV", Model.TenTV)</label>
+                                    <label style="margin-right:30px;">Số điện thoại: @Model.SoDienThoai</label>
+                                    <div>
+                                        <label style="margin-right:30px;">Email: @Model.Email</label>
+                                        <label style="margin-right:30px;">Địa chỉ: @Model.DiaChi</label>
+
+                                    </div>
+                                    @for (int i = 0; i < listQ.Count(); i++)
+                                    {
+                                        int k = 0;
+                                        for (int j = 0; j < listQHTV.Count(); j++)
+                                        {
+                                            if (listQ.ElementAt(i).MaQ == listQHTV.ElementAt(j).MaQ)
+                                            {
+                                                k++;
+                                                break;
+                                            }
+                                        }
+                                        if (k != 0)
+                                        {
+                                            <div class="col-md-4" style="font-size:18pt;margin-top:10px;">
+                                                <input name="@Url.Content("["+i+"].MaTV")" type="hidden" value="@Model.MaTV" />
+                                                <input style="width:20px;height:20px;" name="@Url.Content("["+i+"].MaQ")" type="checkbox" checked="checked" value="@listQ.ElementAt(i).MaQ" />
+                                                <span style="margin-top:-2px;">@listQ.ElementAt(i).TenQ</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+
+                                            <div class="col-md-4" style="font-size:18pt;margin-top:10px;">
+                                                <input name="@Url.Content("["+i+"].MaTV")" type="hidden" value="@Model.MaTV" />
+                                                <input style="width:20px;height:20px;" name="@Url.Content("["+i+"].MaQ")" type="checkbox" @*checked="checked"*@ value="@listQ.ElementAt(i).MaQ" />
+                                                <span style="margin-top:-2px">@listQ.ElementAt(i).TenQ</span>
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <span class="text-success">@ViewBag.ThongBao</span>
+                        @*<span class="text-success">@ViewBag.ThongBao1</span>*@
+                        <div style="margin-top:10px;">
+
+
+                            <input class="btn btn-success" type="submit" value="Lưu" />
+                        </div>
+                    }
+                </div>
+            </div>
+            <div style="margin-top:10px">
+                @Html.ActionLink("Về trang trước", "ChoXacNhan")
+            </div>
+        </div>
+    </div>
+
+</div>

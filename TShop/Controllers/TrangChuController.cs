@@ -10,17 +10,18 @@ namespace TShop.Controllers
     public class TrangChuController : Controller
     {
         TShopEntities db = new TShopEntities();
+
         public ActionResult Index()
         {
             //var loaiSanPham = db.LOAISANPHAMs.ToList();
             //ViewBag.vBLoaiSanPham = loaiSanPham;
-            ViewBag.vBSanPhamBanChay = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false).ToList();
-            ViewBag.vBSanPhamMoi = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false&& n.Moi == true).ToList();
-            
+            ViewBag.vBSanPhamBanChay = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false && n.SoLuongTon > 0).ToList();
+            ViewBag.vBSanPhamMoi = db.SANPHAMs.Where(n => n.LuotMua > 50 && n.Xoa == false && n.Moi == true && n.SoLuongTon > 0).ToList();
+
             return View();
         }
 
-       
+
         [HttpGet]
         public ActionResult TaiKhoan()
         {
@@ -39,11 +40,16 @@ namespace TShop.Controllers
 
                     KH.MatKhau = passwordHash;
 
-                    
+
                     db.KHACHHANGs.Add(KH);
                     db.SaveChanges();
                     ViewBag.ThongBao = "Tạo tài khoản thành công";
                     Session["TaiKhoan"] = KH;
+                    List<ITEMGIOHANG> listItemGioHang = Session["ItemGioHang"] as List<ITEMGIOHANG>;
+                    if (listItemGioHang.Count() != 0)
+                    {
+                        return RedirectToAction("XemGioHang", "GioHang");
+                    }
                     return RedirectToAction("Index");
                 }
                 else
@@ -59,7 +65,7 @@ namespace TShop.Controllers
         {
             string tTDN = f["textTDN"].ToString();
             string tMK = f["textMK"].ToString();
-       
+
             KHACHHANG KH = db.KHACHHANGs.SingleOrDefault(n => n.Email == tTDN);
             if (KH == null)
             {
@@ -70,34 +76,40 @@ namespace TShop.Controllers
             if (BCrypt.Net.BCrypt.Verify(tMK, passwordHash) == true)
             {
                 Session["TaiKhoan"] = KH;
-          
+                List<ITEMGIOHANG> listItemGioHang = Session["ItemGioHang"] as List<ITEMGIOHANG>;
+
+                if (listItemGioHang.Count() != 0)
+                {
+                    return RedirectToAction("XemGioHang", "GioHang");
+
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.ThongBao1 = "Tên tài khoản hoặc mật khẩu không chính xác";
             return View("TaiKhoan");
         }
 
- 
+
         public ActionResult DangXuat()
         {
             Session["TaiKhoan"] = null;
             return RedirectToAction("Index");
         }
 
-        public ActionResult abc()
-        {
-            
-            return View();
-        }
-        [HttpPost]
-        public ActionResult abc(KHACHHANG KH)
-        {
-            if (ModelState.IsValid)
-            {
-                return View();
-            }
-            return View();
-        }
+        //public ActionResult abc()
+        //{
+
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult abc(KHACHHANG KH)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        return View();
+        //    }
+        //    return View();
+        //}
 
         protected override void Dispose(bool disposing)
         {

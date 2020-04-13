@@ -1,0 +1,143 @@
+﻿@using TShop.Models;
+@model PHIEUNHAP
+
+@{
+    IEnumerable<CHITIETPHIEUNHAP> ctpnh = (IEnumerable<CHITIETPHIEUNHAP>)ViewBag.listCTPNH;
+}
+@{
+    ViewBag.Title = "ChiTietPhieuNhapHang";
+    Layout = "~/Views/Shared/Layout/_AdminLayout.cshtml";
+}
+
+
+
+
+<style>
+    .table-responsivea {
+        display: block;
+        width: 100%;
+        /* overflow-x: auto; */
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    @*<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>*@
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Chi tiết phiếu nhập hàng</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsivea">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div style="margin-bottom:10px;">
+
+                                <label style="margin-right: 30px;">Mã phiếu nhập: @Model.MaPN</label>
+                                <label style="margin-right:30px;">Tên nhà cung cấp: @Model.NHACUNGCAP.TenNCC</label>
+                                <label style="margin-right:30px;">Ngày nhập: @Model.NgayNhap.Value.ToString("dd/MM/yyyy h:mm tt")</label>
+                                <label style="margin-right:30px;">Người nhập: @Model.THANHVIEN.TenTV</label>
+                                @*<div>
+
+
+
+                                    </div>*@
+
+
+                            </div>
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 530px;">Mã SP</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 120px;">Tên sản phẩm</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 120px;">Số lượng nhập</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:180px;">Đơn giá nhập</th></tr>
+                                </thead>
+                                @*<tfoot>
+                                        <tr><th rowspan="1" colspan="1">Tên sản phẩm</th><th rowspan="1" colspan="1">Hình ảnh</th><th rowspan="1" colspan="1">Số lượng đặt</th><th rowspan="1" colspan="1">Đơn giá</th></tr>
+                                    </tfoot>*@
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        double tongtien = 0;
+
+                                    }
+                                    @foreach (var item in ctpnh)
+                                    {
+                                        <tr role="row" class="odd">
+                                            <td>@item.MaSP</td>
+                                            <td class="sorting_1">@item.SANPHAM.TenSP</td>
+
+                                            <td>@item.SoLuongNhap</td>
+                                            <td>@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGiaNhap);} @donGia</td>
+
+                                            @*<td><a href="@Url.Action("SuaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-warning">Sửa</a></td>
+                                                <td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
+                                        </tr>
+                                        i = i + int.Parse(item.SoLuongNhap.ToString());
+                                        tongtien = tongtien + (double.Parse(item.DonGiaNhap.ToString()) * int.Parse(item.SoLuongNhap.ToString()));
+                                    }
+
+
+                                </tbody>
+
+                            </table>
+                            <div style="width:100%;margin-top:10px;margin-bottom:10px; text-align:right;">
+                                <div>
+                                    <label>Tổng số lượng sản phẩm: @i sản phẩm</label>
+                                </div>
+                                @{var tong = String.Format("{0:0,0 VNĐ}", tongtien);}
+                                <label>Tổng tiền nhập: @tong</label>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-success">@ViewBag.ThongBao</span>
+                    <div> <span class="text-success">@ViewBag.ThongBao1</span></div>
+
+                    <div style="margin-top:10px;">
+
+                        @*<input id="btnInDonHang" class="btn btn-success" type="button" value="In hoá đơn" />
+                            <input class="btn btn-success" type="submit" value="Lưu hoá đơn" />*@
+                        @*<input id="btnHuyDonHang" onclick="return checkDelete()" class="btn btn-danger" type="button" value="Huỷ đơn hàng" />*@
+                        @if (Model.Xoa == false)
+                        {
+                            <a href="@Url.Action("XoaPhieuNhapHang","Admin",new {@id=Model.MaPN})" onclick="return checkDelete()" class="btn btn-danger">Xoá phiếu nhập hàng</a>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div style="margin-top:10px">
+                @Html.ActionLink("Về trang trước", "TatCaPhieuNhapHang")
+            </div>
+
+
+            <script>
+                function checkDelete() {
+                    return confirm('Bạn có chắc chắn muốn xoá phiếu nhập?');
+                };
+
+                                                    //$("#btnInDonHang").click(function () {
+                                                    //    var content = $(".row").html();
+                                                    //    InDonHang(content);
+                                                    //});
+                                                    //function InDonHang(content) {
+                                                    //    var printWindow = window.open('', '', 'height=400,width=1280');
+                                                    //    printWindow.document.write('<html><heal><title></title>');
+                                                    //    printWindow.document.write('</head><body>');
+                                                    //    printWindow.document.write('<div style="font-size:50px; margin-top:10px;margin-bottom:10px;">TShop</div>')
+                                                    //    printWindow.document.write(content);
+                                                    //    printWindow.document.write('</body></html>');
+                                                    //    printWindow.document.close();
+                                                    //    printWindow.print();
+                                                    //}
+            </script>
+        </div>
+    </div>
+
+</div>
+@*<div style="font-size:50px">TShop</div>*@
+

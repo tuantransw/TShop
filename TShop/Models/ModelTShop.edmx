@@ -92,6 +92,23 @@
           <Property Name="MaNCC" Type="int" />
           <Property Name="NgayNhap" Type="datetime" />
           <Property Name="Xoa" Type="bit" />
+          <Property Name="MaTV" Type="int" />
+        </EntityType>
+        <EntityType Name="QUYENHAN">
+          <Key>
+            <PropertyRef Name="MaQ" />
+          </Key>
+          <Property Name="MaQ" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenQ" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QUYENHANTHANHVIEN">
+          <Key>
+            <PropertyRef Name="MaTV" />
+            <PropertyRef Name="MaQ" />
+          </Key>
+          <Property Name="MaTV" Type="int" Nullable="false" />
+          <Property Name="MaQ" Type="int" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -126,6 +143,19 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="THANHVIEN">
+          <Key>
+            <PropertyRef Name="MaTV" />
+          </Key>
+          <Property Name="MaTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTV" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="SoDienThoai" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="MatKhau" Type="nvarchar(max)" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="Xoa" Type="bit" />
         </EntityType>
         <Association Name="FK_CHITIETDONDATHANG_DONDATHANG">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
@@ -199,6 +229,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PHIEUNHAP_THANHVIEN">
+          <End Role="THANHVIEN" Type="Self.THANHVIEN" Multiplicity="0..1" />
+          <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANHVIEN">
+              <PropertyRef Name="MaTV" />
+            </Principal>
+            <Dependent Role="PHIEUNHAP">
+              <PropertyRef Name="MaTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYENHANTHANHVIEN_QUYENHAN">
+          <End Role="QUYENHAN" Type="Self.QUYENHAN" Multiplicity="1" />
+          <End Role="QUYENHANTHANHVIEN" Type="Self.QUYENHANTHANHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYENHAN">
+              <PropertyRef Name="MaQ" />
+            </Principal>
+            <Dependent Role="QUYENHANTHANHVIEN">
+              <PropertyRef Name="MaQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYENHANTHANHVIEN_THANHVIEN">
+          <End Role="THANHVIEN" Type="Self.THANHVIEN" Multiplicity="1" />
+          <End Role="QUYENHANTHANHVIEN" Type="Self.QUYENHANTHANHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANHVIEN">
+              <PropertyRef Name="MaTV" />
+            </Principal>
+            <Dependent Role="QUYENHANTHANHVIEN">
+              <PropertyRef Name="MaTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SANPHAM_LOAISANPHAM">
           <End Role="LOAISANPHAM" Type="Self.LOAISANPHAM" Multiplicity="0..1" />
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
@@ -244,8 +310,11 @@
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHASANXUAT" EntityType="Self.NHASANXUAT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PHIEUNHAP" EntityType="Self.PHIEUNHAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUYENHAN" EntityType="Self.QUYENHAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUYENHANTHANHVIEN" EntityType="Self.QUYENHANTHANHVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THANHVIEN" EntityType="Self.THANHVIEN" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CHITIETDONDATHANG_DONDATHANG" Association="Self.FK_CHITIETDONDATHANG_DONDATHANG">
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="CHITIETDONDATHANG" EntitySet="CHITIETDONDATHANG" />
@@ -269,6 +338,18 @@
           <AssociationSet Name="FK_PHIEUNHAP_NHACUNGCAP" Association="Self.FK_PHIEUNHAP_NHACUNGCAP">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHIEUNHAP_THANHVIEN" Association="Self.FK_PHIEUNHAP_THANHVIEN">
+            <End Role="THANHVIEN" EntitySet="THANHVIEN" />
+            <End Role="PHIEUNHAP" EntitySet="PHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYENHANTHANHVIEN_QUYENHAN" Association="Self.FK_QUYENHANTHANHVIEN_QUYENHAN">
+            <End Role="QUYENHAN" EntitySet="QUYENHAN" />
+            <End Role="QUYENHANTHANHVIEN" EntitySet="QUYENHANTHANHVIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYENHANTHANHVIEN_THANHVIEN" Association="Self.FK_QUYENHANTHANHVIEN_THANHVIEN">
+            <End Role="THANHVIEN" EntitySet="THANHVIEN" />
+            <End Role="QUYENHANTHANHVIEN" EntitySet="QUYENHANTHANHVIEN" />
           </AssociationSet>
           <AssociationSet Name="FK_SANPHAM_LOAISANPHAM" Association="Self.FK_SANPHAM_LOAISANPHAM">
             <End Role="LOAISANPHAM" EntitySet="LOAISANPHAM" />
@@ -387,6 +468,8 @@
           <Property Name="Xoa" Type="Boolean" />
           <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK_CHITIETPHIEUNHAP_PHIEUNHAP" FromRole="PHIEUNHAP" ToRole="CHITIETPHIEUNHAP" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_PHIEUNHAP_NHACUNGCAP" FromRole="PHIEUNHAP" ToRole="NHACUNGCAP" />
+          <Property Name="MaTV" Type="Int32" />
+          <NavigationProperty Name="THANHVIEN" Relationship="TShopModel.FK_PHIEUNHAP_THANHVIEN" FromRole="PHIEUNHAP" ToRole="THANHVIEN" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -582,7 +665,92 @@
             <End Role="NHASANXUAT" EntitySet="NHASANXUATs" />
             <End Role="SANPHAM" EntitySet="SANPHAMs" />
           </AssociationSet>
+          <EntitySet Name="QUYENHANs" EntityType="TShopModel.QUYENHAN" />
+          <EntitySet Name="QUYENHANTHANHVIENs" EntityType="TShopModel.QUYENHANTHANHVIEN" />
+          <EntitySet Name="THANHVIENs" EntityType="TShopModel.THANHVIEN" />
+          <AssociationSet Name="FK_QUYENHANTHANHVIEN_QUYENHAN" Association="TShopModel.FK_QUYENHANTHANHVIEN_QUYENHAN">
+            <End Role="QUYENHAN" EntitySet="QUYENHANs" />
+            <End Role="QUYENHANTHANHVIEN" EntitySet="QUYENHANTHANHVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QUYENHANTHANHVIEN_THANHVIEN" Association="TShopModel.FK_QUYENHANTHANHVIEN_THANHVIEN">
+            <End Role="THANHVIEN" EntitySet="THANHVIENs" />
+            <End Role="QUYENHANTHANHVIEN" EntitySet="QUYENHANTHANHVIENs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PHIEUNHAP_THANHVIEN" Association="TShopModel.FK_PHIEUNHAP_THANHVIEN">
+            <End Role="THANHVIEN" EntitySet="THANHVIENs" />
+            <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="QUYENHAN">
+          <Key>
+            <PropertyRef Name="MaQ" />
+          </Key>
+          <Property Name="MaQ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenQ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUYENHANTHANHVIENs" Relationship="TShopModel.FK_QUYENHANTHANHVIEN_QUYENHAN" FromRole="QUYENHAN" ToRole="QUYENHANTHANHVIEN" />
+        </EntityType>
+        <EntityType Name="QUYENHANTHANHVIEN">
+          <Key>
+            <PropertyRef Name="MaTV" />
+            <PropertyRef Name="MaQ" />
+          </Key>
+          <Property Name="MaTV" Type="Int32" Nullable="false" />
+          <Property Name="MaQ" Type="Int32" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QUYENHAN" Relationship="TShopModel.FK_QUYENHANTHANHVIEN_QUYENHAN" FromRole="QUYENHANTHANHVIEN" ToRole="QUYENHAN" />
+          <NavigationProperty Name="THANHVIEN" Relationship="TShopModel.FK_QUYENHANTHANHVIEN_THANHVIEN" FromRole="QUYENHANTHANHVIEN" ToRole="THANHVIEN" />
+        </EntityType>
+        <EntityType Name="THANHVIEN">
+          <Key>
+            <PropertyRef Name="MaTV" />
+          </Key>
+          <Property Name="MaTV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="QUYENHANTHANHVIENs" Relationship="TShopModel.FK_QUYENHANTHANHVIEN_THANHVIEN" FromRole="THANHVIEN" ToRole="QUYENHANTHANHVIEN" />
+          <Property Name="Xoa" Type="Boolean" />
+          <NavigationProperty Name="PHIEUNHAPs" Relationship="TShopModel.FK_PHIEUNHAP_THANHVIEN" FromRole="THANHVIEN" ToRole="PHIEUNHAP" />
+        </EntityType>
+        <Association Name="FK_QUYENHANTHANHVIEN_QUYENHAN">
+          <End Type="TShopModel.QUYENHAN" Role="QUYENHAN" Multiplicity="1" />
+          <End Type="TShopModel.QUYENHANTHANHVIEN" Role="QUYENHANTHANHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYENHAN">
+              <PropertyRef Name="MaQ" />
+            </Principal>
+            <Dependent Role="QUYENHANTHANHVIEN">
+              <PropertyRef Name="MaQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QUYENHANTHANHVIEN_THANHVIEN">
+          <End Type="TShopModel.THANHVIEN" Role="THANHVIEN" Multiplicity="1" />
+          <End Type="TShopModel.QUYENHANTHANHVIEN" Role="QUYENHANTHANHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANHVIEN">
+              <PropertyRef Name="MaTV" />
+            </Principal>
+            <Dependent Role="QUYENHANTHANHVIEN">
+              <PropertyRef Name="MaTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PHIEUNHAP_THANHVIEN">
+          <End Type="TShopModel.THANHVIEN" Role="THANHVIEN" Multiplicity="0..1" />
+          <End Type="TShopModel.PHIEUNHAP" Role="PHIEUNHAP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANHVIEN">
+              <PropertyRef Name="MaTV" />
+            </Principal>
+            <Dependent Role="PHIEUNHAP">
+              <PropertyRef Name="MaTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -676,6 +844,7 @@
           <EntitySetMapping Name="PHIEUNHAPs">
             <EntityTypeMapping TypeName="TShopModel.PHIEUNHAP">
               <MappingFragment StoreEntitySet="PHIEUNHAP">
+                <ScalarProperty Name="MaTV" ColumnName="MaTV" />
                 <ScalarProperty Name="MaPN" ColumnName="MaPN" />
                 <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
                 <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
@@ -716,6 +885,37 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUYENHANs">
+            <EntityTypeMapping TypeName="TShopModel.QUYENHAN">
+              <MappingFragment StoreEntitySet="QUYENHAN">
+                <ScalarProperty Name="TenQ" ColumnName="TenQ" />
+                <ScalarProperty Name="MaQ" ColumnName="MaQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUYENHANTHANHVIENs">
+            <EntityTypeMapping TypeName="TShopModel.QUYENHANTHANHVIEN">
+              <MappingFragment StoreEntitySet="QUYENHANTHANHVIEN">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaQ" ColumnName="MaQ" />
+                <ScalarProperty Name="MaTV" ColumnName="MaTV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THANHVIENs">
+            <EntityTypeMapping TypeName="TShopModel.THANHVIEN">
+              <MappingFragment StoreEntitySet="THANHVIEN">
+                <ScalarProperty Name="Xoa" ColumnName="Xoa" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenTV" ColumnName="TenTV" />
+                <ScalarProperty Name="MaTV" ColumnName="MaTV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

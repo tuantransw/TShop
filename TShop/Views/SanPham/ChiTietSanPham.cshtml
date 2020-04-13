@@ -10,29 +10,29 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 nopadding-right">
-                @Html.Action("DanhMucSanPhamPartial","LoaiSanPham")
+                @Html.Action("DanhMucSanPhamPartial", "LoaiSanPham")
                 <!--aside 1 end-->
                 @*<aside>
-                    <div class="tag-area">
-                        <div class="area-title">
-                            <h3>Popular Tags</h3>
+                        <div class="tag-area">
+                            <div class="area-title">
+                                <h3>Popular Tags</h3>
+                            </div>
+                            <ul class="aside-padd">
+                                <li> <a href="#">html5</a></li>
+                                <li> <a href="#">css3</a></li>
+                                <li> <a href="#">Joomla</a></li>
+                                <li> <a href="#">Jquery</a></li>
+                                <li> <a href="#">css</a></li>
+                                <li> <a href="#">Content</a></li>
+                                <li> <a href="#">clothing</a></li>
+                                <li> <a href="#">shoes</a></li>
+                                <li> <a href="#">gifts</a></li>
+                                <li> <a href="#">electronics</a></li>
+                            </ul>
                         </div>
-                        <ul class="aside-padd">
-                            <li> <a href="#">html5</a></li>
-                            <li> <a href="#">css3</a></li>
-                            <li> <a href="#">Joomla</a></li>
-                            <li> <a href="#">Jquery</a></li>
-                            <li> <a href="#">css</a></li>
-                            <li> <a href="#">Content</a></li>
-                            <li> <a href="#">clothing</a></li>
-                            <li> <a href="#">shoes</a></li>
-                            <li> <a href="#">gifts</a></li>
-                            <li> <a href="#">electronics</a></li>
-                        </ul>
-                    </div>
-                </aside>*@
+                    </aside>*@
                 <!--aside 2 end-->
-                @Html.Action("DangKiNhanTinPartial","TC")
+                @Html.Action("DangKiNhanTinPartial", "TC")
                 <!--aside 3 end-->
             </div>
             <!--col-md-3-->
@@ -93,7 +93,7 @@
                                         <a href="#"><i class="fa fa-star"></i></a>
                                         <a href="#"><i class="fa fa-star"></i></a>
                                         <a href="#"><i class="fa fa-star-o"></i></a>
-                                        </span>
+
                                     </p>
                                 </div>
                                 @Html.Raw(Model.CauHinh)
@@ -106,23 +106,54 @@
                                     }
 
                                 </div>
-                                <div class="add-to-box-view pt25 pb25">
-                                    <a class="button cart_button" href="@Url.Action("ThemGioHang","GioHang",new { @MaSP=Model.MaSP})" title="Mua ngay">
-                                        <span>Mua ngay</span>
-                                    </a>
+                                @using (Html.BeginForm("ThemGioHangSoLuong", "GioHang", FormMethod.Post, new { id = "SF" }))
+                                {
+                                    <div class="add-to-box-view pt25 pb25">
+                                        @{ if (Model.SoLuongTon > 0)
+                                            {
+                                                @*<a class="button cart_button" href="javascript:{}" title="Mua ngay">*@
+                                                    <a class="button cart_button" href="javascript:{}" onclick="document.getElementById('SF').submit();">
+                                                    <span>Mua ngay</span>
+                                                </a>
+                                                @Html.Hidden("MaSP", Model.MaSP);
+                                                @*<input type="submit" class="button cart_button" value="" />*@
+                                                @*<button class="button cart_button" type="submit" form="SF">Mua ngay</button>*@
+                                            }
+                                            else
+                                            {
+                                                @*<style>
+                                                        .add-to-box-view .button.cart_button {
+                                                            border-radius: 0;
+                                                            float: left;
+                                                            width: 68%;
+                                                        }
+                                                    </style>*@
+                                                <div class="button cart_button" style="width:330px" href="#" title="Mua ngay">
+                                                    @*<span>Liên hệ: 0981781811 để đặt hàng</span>*@
+                                                    <span style="font-style:normal;">Liên hệ <i class="fa fa-phone"></i> (+84) 981 781 811 để đặt hàng</span>
+                                                    @*<div class="phone"><i class="fa fa-phone"></i>(+84) 981 781 811</div>*@
+                                                </div>
+                                                @*@Url.Action("ThemGioHang","GioHang",new { @MaSP=Model.MaSP})*@
+                                            }
+                                        }
+                                        @*<a class="button cart_button" href="@Url.Action("ThemGioHang","GioHang",new { @MaSP=Model.MaSP})" title="Mua ngay">
+                                                <span>Mua ngay</span>
+                                            </a>*@
                                     <div class="input-content">
                                         <label>Số lượng:</label>
-                                        <input type="number" value="1" name="quantity">
+                                        @*<input type="number" min="1" max="500" value="1" name="SoLuong">*@
+                                        @*<td class="c-qty">*@<input type="number" id="SoLuong" name="SoLuong" @*min="1" max="500"*@ value="1">@*</td>*@
                                     </div>
-                                </div>
+                                    </div>
+                                }
                                 <div class="add-to-box pt20 pb20">
                                     <ul>
                                         <li>
                                             <a class="link-wishlist" href="#">Thêm vào danh sách yêu thích</a>
                                         </li>
                                         @*<li>
-                                <a class="link-compare" href="#">Add Your Review</a>
-                            </li>*@
+                                                <a class="link-compare" href="#">Add Your Review</a>
+                                            </li>*@
                                     </ul>
                                 </div>
                                 <div class="social-share pt25 pb25">
@@ -138,7 +169,7 @@
                             <ul class="nav">
                                 <li><a class="active" href="#product-des" data-toggle="tab">Mô tả sản phẩm</a></li>
                                 @*<li><a href="#add-review" data-toggle="tab">Add Your Review</a></li>
-                    <li><a href="#product-tag" data-toggle="tab">Product Tags</a></li>*@
+                                    <li><a href="#product-tag" data-toggle="tab">Product Tags</a></li>*@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">

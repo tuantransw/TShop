@@ -72,7 +72,7 @@ else
                                                     <a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">@item.TenSP @Html.Hidden("MaSP", item.MaSP)</a><br>
                                                 </td>
                                                 <td class="c-price"> @item.DonGia.ToString("#,##") VNĐ</td>
-                                                <td class="c-qty"><input type="number" id="SoLuong" name="SoLuong" min="1" max="100" value="@item.SoLuong"></td>
+                                                <td class="c-qty"><input type="number" id="SoLuong" name="SoLuong" style="width:66px;" value="@item.SoLuong"></td>
                                                 <td class="c-price">@item.ThanhTien.ToString("#,##") VNĐ</td>
 
 

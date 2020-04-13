@@ -42,20 +42,27 @@
                                     <label style="margin-right:30px;">Mã khách hàng: @Model.MaKH @Html.Hidden("MaKH", Model.MaKH)</label>
                                     <label style="margin-right:30px;">Tên khách hàng: @Model.KHACHHANG.TenKH</label>
                                     <label style="margin-right:30px;">Ngày đặt: @Model.NgayDat @Html.Hidden("NgayDat", Model.NgayDat)</label>
+                                    <div>
+
+                                        <label style="margin-right:30px;">Địa chỉ giao hàng: @Model.KHACHHANG.DiaChi</label>
+                                        <label style="margin-right:30px;">Số điện thoại: @Model.KHACHHANG.SoDienThoai</label>
+                                        @{
+                                            if (Model.DaThanhToan == true)
+                                            {
+                                                <label style="margin-right:30px;">Thanh toán: Đã thanh toán</label>
+                                            }
+                                            else
+                                            {
+                                                <label style="margin-right:15px;">Thanh toán: Chưa thanh toán</label>
+                                                <label style="font-size:13px;"><input name="DaThanhToan" type="checkbox" value="true" />(Đã thanh toán)</label>
+                                            }
+                                        }
+                                    </div>
+                           
                                     @Html.Hidden("NgayGiao", Model.NgayGiao)
                                     @Html.Hidden("Xoa", Model.Xoa)
-                                    @Html.Hidden("HuyDatHang",Model.HuyDatHang)
-                                    @{
-                                        if (Model.DaThanhToan == true)
-                                        {
-                                            <label style="margin-right:30px;">Thanh toán: Đã thanh toán</label>
-                                        }
-                                        else
-                                        {
-                                            <label style="margin-right:15px;">Thanh toán: Chưa thanh toán</label>
-                                            <label style="font-size:10px;"><input name="DaThanhToan" type="checkbox" value="true" />@*(Đã thanh toán)*@</label>
-                                        }
-                                    }
+                                    @Html.Hidden("HuyDatHang", Model.HuyDatHang)
+                                    
 
                                     @*<label>@Model.KHACHHANG.TenKH</label>*@
                                 </div>
@@ -100,13 +107,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-top:10px;">
-                            @ViewBag.ThongBao
-                            @ViewBag.ThongBao1
-                            <input id="btnInDonHang" class="btn btn-success" type="button" value="In hoá đơn" />
-                            <input class="btn btn-success" type="submit" value="Lưu hoá đơn" />
-                            <input id="btnHuyDonHang" class="btn btn-danger" type="button" value="Huỷ đơn hàng" />
-                        </div>
+                        <span class="text-success">@ViewBag.ThongBao</span>
+                        <div> <span class="text-success">@ViewBag.ThongBao1</span></div>
+                       
+                <div style="margin-top:10px;">
+
+                    <input id="btnInDonHang" class="btn btn-success" type="button" value="In hoá đơn" />
+                    <input class="btn btn-success" type="submit" value="Lưu hoá đơn" />
+                    @*<input id="btnHuyDonHang" onclick="return checkDelete()" class="btn btn-danger" type="button" value="Huỷ đơn hàng" />*@
+                    <a href="@Url.Action("HuyDonHangChoXacNhan","Admin",new {@id=Model.MaDDH})" onclick="return checkDelete()" class="btn btn-danger">Huỷ đơn hàng</a>
+                </div>
                     }
                 </div>
             </div>
@@ -116,6 +126,10 @@
 
 
             <script>
+                function checkDelete() {
+                    return confirm('Bạn có chắc chắn muốn huỷ đơn hàng?');
+                };
+
                 $("#btnInDonHang").click(function () {
                     var content = $(".row").html();
                     InDonHang(content);

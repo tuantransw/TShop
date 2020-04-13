@@ -68,13 +68,53 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-            <li class="nav-item @*active*@">
-                <a class="nav-link" href="@Url.Action("ChoXacNhan","Admin")">
+            @*<li class="nav-item @*active">
+            <a class="nav-link" href="@Url.Action("ChoXacNhan","Admin")">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Quản lý đơn đặt hàng</span>
+            </a>
+        </li>*@
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Quản lý đơn đặt hàng</span>
                 </a>
-            </li>
+                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        @*<h6 class="collapse-header">Đ:</h6>*@
+                        <a class="collapse-item" href="@Url.Action("ChoXacNhan","Admin")">Đơn hàng chờ xác nhận</a>
 
+
+                        <a class="collapse-item" href="@Url.Action("DangGiao","Admin")">Đơn hàng đang giao</a>
+                        <a class="collapse-item" href="@Url.Action("DaHoanThanh","Admin")">Tất cả đơn hàng đã hoàn thành</a>
+                        <a class="collapse-item" href="@Url.Action("DonDaHuy","Admin")">Tất cả đơn hàng đã huỷ</a>
+
+                        @*<a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>*@
+                    </div>
+                </div>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2" aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Quản lý nhập hàng</span>
+                </a>
+                <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        @*<h6 class="collapse-header">Đ:</h6>*@
+                        <a class="collapse-item" href="@Url.Action("NhapHang","Admin")">Nhập hàng</a>
+
+
+                        <a class="collapse-item" href="@Url.Action("TatCaPhieuNhapHang","Admin")">Tất cả phiếu nhập hàng</a>
+                        <a class="collapse-item" href="@Url.Action("TatCaPhieuNhapHangDaXoa","Admin")">Phiếu nhập hàng đã xoá</a>
+                        @*<a class="collapse-item" href="@Url.Action("DonDaHuy","Admin")">Tất cả đơn hàng đã huỷ</a>*@
+
+                        @*<a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>*@
+                    </div>
+                </div>
+            </li>
             <hr class="sidebar-divider my-0">
 
             <!-- Heading -->
@@ -95,7 +135,7 @@
                         <a class="collapse-item" href="@Url.Action("ThemSanPham","Admin")">Thêm mới sản phẩm</a>
                         <a class="collapse-item" href="@Url.Action("XemLoaiSanPham","Admin")">Tất cả loại sản phẩm</a>
                         <a class="collapse-item" href="@Url.Action("ThemLoaiSanPham","Admin")">Thêm loại sản phẩm</a>
-                        <a class="collapse-item" href="@Url.Action("NhapHang","Admin")">Nhập hàng</a>
+                        @*<a class="collapse-item" href="@Url.Action("NhapHang","Admin")">Nhập hàng</a>*@
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Nhà cung cấp:</h6>
                         <a class="collapse-item" href="@Url.Action("XemNhaCungCap","Admin")">Tất cả nhà cung cấp</a>
@@ -106,7 +146,7 @@
                         <a class="collapse-item" href="@Url.Action("ThemNhaSanXuat","Admin")">Thêm mới nhà sản xuất</a>
 
                         @*<a class="collapse-item" href="404.html">404 Page</a>
-        <a class="collapse-item" href="blank.html">Blank Page</a>*@
+                    <a class="collapse-item" href="blank.html">Blank Page</a>*@
                     </div>
                 </div>
             </li>
@@ -154,60 +194,36 @@
                     @*</form>*@
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+                <ul class="navbar-nav ml-auto">
 
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                    @*<li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>*@
 
-                    </ul>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+
+                    @*<a href="~/Views/Shared/Layout/_AdminHeaderTop.cshtml">~/Views/Shared/Layout/_AdminHeaderTop.cshtml</a>*@
+                    @Html.Partial("~/Views/Shared/Layout/_AdminHeaderTop.cshtml")
+
+                </ul>
 
                 </nav>
                 <!-- End of Topbar -->
@@ -221,7 +237,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; TShop 2020</span>
                     </div>
                 </div>
             </footer>
@@ -238,7 +254,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @*<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -254,7 +270,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <!-- Bootstrap core JavaScript-->
     @*<script src="~/Content/admin/vendor/jquery/jquery.min.js"></script>*@

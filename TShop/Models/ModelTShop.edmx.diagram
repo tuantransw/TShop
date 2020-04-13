@@ -24,6 +24,12 @@
         <AssociationConnector Association="TShopModel.FK_PHIEUNHAP_NHACUNGCAP" ManuallyRouted="false" />
         <AssociationConnector Association="TShopModel.FK_SANPHAM_NHACUNGCAP" ManuallyRouted="false" />
         <AssociationConnector Association="TShopModel.FK_SANPHAM_NHASANXUAT" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TShopModel.QUYENHAN" Width="1.5" PointX="7.375" PointY="7.125" />
+        <EntityTypeShape EntityType="TShopModel.QUYENHANTHANHVIEN" Width="1.5" PointX="9.625" PointY="6.875" />
+        <EntityTypeShape EntityType="TShopModel.THANHVIEN" Width="1.5" PointX="7.375" PointY="10.625" />
+        <AssociationConnector Association="TShopModel.FK_QUYENHANTHANHVIEN_QUYENHAN" />
+        <AssociationConnector Association="TShopModel.FK_QUYENHANTHANHVIEN_THANHVIEN" />
+        <AssociationConnector Association="TShopModel.FK_PHIEUNHAP_THANHVIEN" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

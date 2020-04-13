@@ -35,5 +35,8 @@ namespace TShop.Models
         public virtual DbSet<PHIEUNHAP> PHIEUNHAPs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<QUYENHAN> QUYENHANs { get; set; }
+        public virtual DbSet<QUYENHANTHANHVIEN> QUYENHANTHANHVIENs { get; set; }
+        public virtual DbSet<THANHVIEN> THANHVIENs { get; set; }
     }
 }

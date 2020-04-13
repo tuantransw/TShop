@@ -1,0 +1,1102 @@
+﻿@using TShop.Models;
+@model IEnumerable<SANPHAM>
+
+<!--====== best offered area start===== -->
+<div class="our-product-area best-offere featur-padd mt25">
+    <!-- area title start -->
+    <div class="area-title">
+        <h2>Lựa chọn tốt nhất</h2>
+    </div>
+    <!-- area title end -->
+    <!-- our-product area start -->
+    <div class="features-tab">
+        <!-- Nav tabs -->
+        <ul class="nav">
+            @*<li><a class="active" href="#home2" data-toggle="tab"><i class="fa fa-list"></i>Watches</a></li>*@
+            @*<li><a href="#new2" data-toggle="tab"><i class="fa fa-arrow-circle-o-down"></i>Books</a></li>
+                <li><a href="#profile2" data-toggle="tab"><i class="fa fa-star-o"></i>Sports</a></li>*@
+        </ul>
+        <div class="row">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade show active" id="home2">
+                    <!--==============================watches=============================-->
+                    <div class="row row-margin2 feature-carousel-tab">
+                        <!-- single-product start -->
+                        @*<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch1.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>*@
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        @foreach (var item in Model.Take(8))
+                        {
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                                <div class="single-product">
+                                    <div class="product-label">
+                                        <div class="sale"></div>
+                                    </div>
+                                    <div class="product-img">
+                                        <a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">
+                                            <img class="primary-image" src="@Url.Content("~/Content/HinhAnh/"+item.HinhAnh)" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-content">
+                                        @if (item.TenSP.Length < 28)
+                                        {
+                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">@item.TenSP</a></h2>
+                                        }
+                                        else
+                                        {
+                                            <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">@item.TenSP.Substring(0,28)...</a></h2>
+                                        }
+
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="new-price">@{var donGia = String.Format("{0:0,0 VNĐ}", item.DonGia);} @donGia</span>
+                                            @*<span class="old-rpice"><del>$250.00</del></span>*@
+                                        </div>
+                                    </div>
+                                    <div class="product-content2">
+                                        <h2 class="product-name"><a href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})">@item.TenSP</a></h2>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star"></i></a>
+                                            <a href="#"><i class="fa fa-star-o"></i></a>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="new-price">@donGia</span>
+                                            @*<span class="old-rpice"><del>$250.00</del></span>*@
+                                        </div>
+
+                                        <div class="button-container">
+                                            <a title="Mua ngay" href="@Url.Action("ThemGioHang", "GioHang", new { @MaSP = item.MaSP })" class="button cart_button">
+                                                <span>Mua ngay</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <ul class="add-to-links">
+                                        @*<li>
+                                            <div class="wishlist">
+                                                <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                            </div>
+                                        </li>*@
+                                        <li>
+                                            <div class="view-products">
+                                                <a title="Chi tiết sản phẩm" href="@Url.Action("ChiTietSanPham","SanPham",new { @MaSP=item.MaSP})" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                    <!--feature-carousel-tab-->
+                </div>
+                <!--================================Books================================-->
+                <div role="tabpanel" class="tab-pane fade" id="new2">
+                    <div class="row row-margin2 feature-carousel-tab">
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books1.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="sale"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books2.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books3.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books4.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books5.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books6.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="sale"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books2.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/books3.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                    </div>
+                    <!--feature-carousel-tab-->
+                </div>
+                <!--=========================sptors===============================-->
+                <div role="tabpanel" class="tab-pane fade" id="profile2">
+                    <div class="row row-margin2 feature-carousel-tab">
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch1.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="sale"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch2.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch3.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch4.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch5.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch6.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="sale"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch3.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                        <span class="old-rpice"><del>$250.00</del></span>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <!-- single-product end -->
+                        <!-- single-product start -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-padd">
+                            <div class="single-product">
+                                <div class="product-label">
+                                    <div class="new"></div>
+                                </div>
+                                <div class="product-img">
+                                    <a href="#">
+                                        <img class="primary-image" src="img/product/watch4.jpg" alt="" />
+                                    </a>
+                                </div>
+                                <div class="product-content">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                </div>
+                                <div class="product-content2">
+                                    <h2 class="product-name"><a href="#">Donec ac tempus</a></h2>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        <a href="#"><i class="fa fa-star-o"></i></a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">$222.00</span>
+                                    </div>
+                                    <div class="button-container">
+                                        <a title="Add to Cart" href="#" class="button cart_button">
+                                            <span>Add to Cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="add-to-links">
+                                    <li>
+                                        <div class="wishlist">
+                                            <a title="Add to Wishlist" href="#" data-toggle="tooltip"><i class="fa fa-heart"></i></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="view-products">
+                                            <a title="view pordcuts" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-arrows-alt"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- single-product end -->
+                    </div>
+                    <!--feature-carousel-tab-->
+                </div>
+                <!-- product section end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- best offered area end-->

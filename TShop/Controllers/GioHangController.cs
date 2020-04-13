@@ -42,10 +42,11 @@ namespace TShop.Controllers
 
                 if (spCheck != null)
                 {
-                    if (sp.SoLuongTon < spCheck.SoLuong)
+                    if (sp.SoLuongTon < spCheck.SoLuong ||sp.SoLuongTon==null)
                     {
-                        return View("ThongBao");
+                        return RedirectToAction("ChiTietSanPham", "SanPham", new { @MaSP = MaSP });
                     }
+                    
                     if (sp.DonGia != spCheck.DonGia)
                     {
                         listItemGioHang.Clear();
@@ -61,9 +62,61 @@ namespace TShop.Controllers
                 }
                 //Trường hợp 2: Sản phẩm chưa có trong giỏ hàng
                 ITEMGIOHANG itemGH = new ITEMGIOHANG(MaSP);
-                if (sp.SoLuongTon < itemGH.SoLuong)
+                if (sp.SoLuongTon < itemGH.SoLuong || sp.SoLuongTon==null)
                 {
-                    return View("ThongBao");
+                    return RedirectToAction("ChiTietSanPham", "SanPham", new { @MaSP = MaSP });
+                }
+                listItemGioHang.Add(itemGH);
+                ViewBag.TongTien = TinhTongTien();
+                return View("XemGioHang", listItemGioHang);
+            }
+
+        }
+        public ActionResult ThemGioHangSoLuong(/*int MaSP,int SoLuong*/FormCollection f)
+        {
+            int SoLuong = int.Parse(f["SoLuong"].ToString());
+            int MaSP = int.Parse(f["MaSP"].ToString());
+            //Kiểm tra sản phẩm
+            SANPHAM sp = db.SANPHAMs.SingleOrDefault(n => n.MaSP == MaSP);
+            if (sp == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+
+            }
+            else
+            {
+                //Lấy giỏ hàng
+                List<ITEMGIOHANG> listItemGioHang = LayGioHang();
+
+                //Trường hợp 1: Nếu sản phẩm đã có trong giỏ hàng
+
+                ITEMGIOHANG spCheck = listItemGioHang.SingleOrDefault(n => n.MaSP == MaSP);
+
+                if (spCheck != null)
+                {
+                    if (sp.SoLuongTon < spCheck.SoLuong + SoLuong || sp.SoLuongTon == null)
+                    {
+                        SoLuong = int.Parse(sp.SoLuongTon.ToString())-spCheck.SoLuong;
+                    }
+                    if (sp.DonGia != spCheck.DonGia)
+                    {
+                        listItemGioHang.Clear();
+                        ITEMGIOHANG itemGHNew = new ITEMGIOHANG(MaSP,SoLuong);
+                        listItemGioHang.Add(itemGHNew);
+                        ViewBag.TongTien = TinhTongTien();
+                        return View("XemGioHang", listItemGioHang);
+                    }
+                    spCheck.SoLuong=spCheck.SoLuong+SoLuong;
+                    spCheck.ThanhTien = spCheck.DonGia * spCheck.SoLuong;
+                    ViewBag.TongTien = TinhTongTien();
+                    return View("XemGioHang", listItemGioHang);
+                }
+                //Trường hợp 2: Sản phẩm chưa có trong giỏ hàng
+                ITEMGIOHANG itemGH = new ITEMGIOHANG(MaSP,SoLuong);
+                if (sp.SoLuongTon < itemGH.SoLuong || sp.SoLuongTon == null)
+                {
+                    itemGH.SoLuong = int.Parse(sp.SoLuongTon.ToString());
                 }
                 listItemGioHang.Add(itemGH);
                 ViewBag.TongTien = TinhTongTien();
@@ -148,7 +201,7 @@ namespace TShop.Controllers
             SANPHAM spCheck = db.SANPHAMs.Single(n => n.MaSP == item.MaSP);
             if (spCheck.SoLuongTon < sl)
             {
-                return View("ThongBao");
+                sl = int.Parse(spCheck.SoLuongTon.ToString());
             }
             List<ITEMGIOHANG> listGioHang = LayGioHang();
             ITEMGIOHANG itemGioHangUpDate = listGioHang.Find(n => n.MaSP == item.MaSP);
