@@ -129,14 +129,14 @@ namespace TShop.Controllers
         [Authorize(Roles = "5")]
         public ActionResult NhapHang()
         {
-            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.TenNCC), "MaNCC", "TenNCC");
+            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.MaNCC), "MaNCC", "TenNCC");
             ViewBag.ListSP = db.SANPHAMs;
             return View();
         }
         [HttpPost]
         public ActionResult NhapHang(PHIEUNHAP model, IEnumerable<CHITIETPHIEUNHAP> listModel)
         {
-            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.TenNCC), "MaNCC", "TenNCC");
+            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.MaNCC), "MaNCC", "TenNCC");
             ViewBag.ListSP = db.SANPHAMs;
 
             model.Xoa = false;
@@ -199,7 +199,7 @@ namespace TShop.Controllers
         public ActionResult ThemSanPham()
         {
 
-            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.TenNCC), "MaNCC", "TenNCC");
+            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.MaNCC), "MaNCC", "TenNCC");
             ViewBag.MaLSP = new SelectList(db.LOAISANPHAMs.OrderBy(n => n.MaLSP), "MaLSP", "TenLSP");
             ViewBag.MaNSX = new SelectList(db.NHASANXUATs.OrderBy(n => n.MaNSX), "MaNSX", "TenNSX");
 
@@ -208,9 +208,9 @@ namespace TShop.Controllers
         }
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult ThemSanPham(SANPHAM sp, HttpPostedFileBase HinhAnh, HttpPostedFileBase HinhAnh2, HttpPostedFileBase HinhAnh3, HttpPostedFileBase HinhAnh4)
+        public ActionResult ThemSanPham(CHITIETPHIEUNHAP ctpn,PHIEUNHAP pn,SANPHAM sp, HttpPostedFileBase HinhAnh, HttpPostedFileBase HinhAnh2, HttpPostedFileBase HinhAnh3, HttpPostedFileBase HinhAnh4)
         {
-            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.TenNCC), "MaNCC", "TenNCC");
+            ViewBag.MaNCC = new SelectList(db.NHACUNGCAPs.OrderBy(n => n.MaNCC), "MaNCC", "TenNCC");
             ViewBag.MaLSP = new SelectList(db.LOAISANPHAMs.OrderBy(n => n.MaLSP), "MaLSP", "TenLSP");
             ViewBag.MaNSX = new SelectList(db.NHASANXUATs.OrderBy(n => n.MaNSX), "MaNSX", "TenNSX");
             ///
@@ -280,6 +280,17 @@ namespace TShop.Controllers
             sp.LuotXem = 0;
             sp.Xoa = false;
             db.SANPHAMs.Add(sp);
+
+            pn.Xoa = false;
+            pn.NgayNhap = DateTime.Now;
+            db.PHIEUNHAPs.Add(pn);
+
+
+            db.SaveChanges();
+            ctpn.MaSP = sp.MaSP;
+            ctpn.SoLuongNhap = sp.SoLuongTon;
+            ctpn.MaPN = pn.MaPN;
+            db.CHITIETPHIEUNHAPs.Add(ctpn);
             db.SaveChanges();
             return RedirectToAction("XemSanPham");
             //if (HinhAnh != null)

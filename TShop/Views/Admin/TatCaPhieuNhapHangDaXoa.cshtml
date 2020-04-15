@@ -34,33 +34,39 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1">@item.MaPN</td>
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1">@item.MaPN</td>
 
-                                            <td>@Html.DisplayFor(modelItem => item.THANHVIEN.TenTV)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.THANHVIEN.TenTV)</td>
 
-                                            <td>@item.NgayNhap.Value.ToString("dd/MM/yyyy h:mm tt")</td>
-                                            <td>@item.NHACUNGCAP.TenNCC</td>
-                                            @*@{
-                                                    if (item.TinhTrangGiaoHang == "cxn")
-                                                    {
-                                                        <td>Chờ xác nhận</td>
-                                                    }
-                                                }
-                                                @{
-                                                    if (item.DaThanhToan == true)
-                                                    {
-                                                        <td>Đã thanh toán</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>Chưa thanh toán</td>
-                                                    }
-                                                }*@
+                                        @*<td>@item.NgayNhap.Value.ToString("dd/MM/yyyy h:mm tt")</td>*@
+                                        <td>
+                                            @if (item.NgayNhap != null)
+                                            {
+                                                @item.NgayNhap.Value.ToString("dd/MM/yyyy h:mm tt")
+                                            }
+                                        </td>
+                                        <td>@item.NHACUNGCAP.TenNCC</td>
+                                        @*@{
+            if (item.TinhTrangGiaoHang == "cxn")
+            {
+                <td>Chờ xác nhận</td>
+            }
+        }
+        @{
+            if (item.DaThanhToan == true)
+            {
+                <td>Đã thanh toán</td>
+            }
+            else
+            {
+                <td>Chưa thanh toán</td>
+            }
+        }*@
 
-                                            <td><a href="@Url.Action("ChiTietPhieuNhapHang","Admin",new {@id=item.MaPN})" class="btn btn-warning">Chi tiết</a></td>
-                                            @*<td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
-                                        </tr>
+                                        <td><a href="@Url.Action("ChiTietPhieuNhapHang","Admin",new {@id=item.MaPN})" class="btn btn-warning">Chi tiết</a></td>
+                                        @*<td><a href="@Url.Action("XoaSanPham","Admin",new {@id=item.MaSP})" class="btn btn-danger">Xoá</a></td>*@
+                                    </tr>
                                     }
 
 

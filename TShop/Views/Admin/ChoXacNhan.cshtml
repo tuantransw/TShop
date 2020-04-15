@@ -28,10 +28,10 @@
                         <div class="col-sm-12">
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
-                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 67px;">Mã đơn đặt hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 239px;">Tên khách hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 158px;">Ngày đặt</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:158px;">Ngày giao</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 160px;">Tình trạng đơn hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 105px;">Đã thanh toán</th><th style="width:163px;"></th></tr>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 90px;">Mã ĐĐH</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 278px;">Tên khách hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 120px;">Ngày đặt</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width:120px;">Ngày giao</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 180px;">Tình trạng đơn hàng</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 150px;">Đã thanh toán</th><th style="width:168px;"></th></tr>
                                 </thead>
                                 <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Mã đơn đặt hàng</th><th rowspan="1" colspan="1">Tên khách hàng</th><th rowspan="1" colspan="1">Ngày đặt</th><th rowspan="1" colspan="1">Ngày giao</th><th rowspan="1" colspan="1">Tình trạng đơn hàng</th><th rowspan="1" colspan="1">Đã thanh toán</th><th></th></tr>
+                                    <tr><th rowspan="1" colspan="1">Mã ĐĐH</th><th rowspan="1" colspan="1">Tên khách hàng</th><th rowspan="1" colspan="1">Ngày đặt</th><th rowspan="1" colspan="1">Ngày giao</th><th rowspan="1" colspan="1">Tình trạng đơn hàng</th><th rowspan="1" colspan="1">Đã thanh toán</th><th></th></tr>
                                 </tfoot>
                                 <tbody>
                                     @foreach (var item in Model)
@@ -41,8 +41,18 @@
 
                                             <td>@Html.DisplayFor(modelItem => item.KHACHHANG.TenKH)</td>
 
-                                            <td>@item.NgayDat</td>
-                                            <td>@item.NgayGiao</td>
+                                            <td>
+                                                @if (item.NgayDat != null)
+                                                {
+                                                    @item.NgayDat.Value.ToString("dd/MM/yyyy h:mm tt")
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.NgayGiao != null)
+                                                {
+                                                    @item.NgayGiao.Value.ToString("dd/MM/yyyy h:mm tt")
+                                                }
+                                            </td>
                                             @{
                                                 if (item.TinhTrangGiaoHang == "cxn")
                                                 {
@@ -77,34 +87,53 @@
                             <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                                 <ul class="pagination">
                                     @*<li class="paginate_button page-item previous disabled" id="dataTable_previous">
-                                            <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                                        </li>*@
-                                    @for (int i = 1; i <= Model.PageCount; i++)
+            <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+        </li>*@
+                                    @if (Model.PageCount <= 5)
                                     {
-                                        if (i == Model.PageNumber)
+                                        for (int i = 1; i <= Model.PageCount; i++)
                                         {
-                                            @*<li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
-                                            <li class="paginate_button page-item active"><a href="@Url.Action("ChoXacNhan","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            if (i == Model.PageNumber)
+                                            {
+                                                @*<li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
+                                                <li class="paginate_button page-item active"><a href="@Url.Action("ChoXacNhan","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            }
+                                            else
+                                            {
+                                                @*<li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
+                                                <li class="paginate_button page-item "><a href="@Url.Action("ChoXacNhan","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            }
                                         }
-                                        else
-                                        {
-                                            @*<li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
-                                            <li class="paginate_button page-item "><a href="@Url.Action("ChoXacNhan","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
-                                        }
-
-
                                     }
+                                    else
+                                    {
+                                        for (int i = 1; i <= 5; i++)
+                                        {
+                                            if (i == Model.PageNumber)
+                                            {
+                                                @*<li class="pagination-active"><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
+                                                <li class="paginate_button page-item active"><a href="@Url.Action("ChoXacNhan","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            }
+                                            else
+                                            {
+                                                @*<li><a title="@i" href="@Url.Action("SanPhamTheoLSP","SanPham",new {Page = i,@MaLSP = ViewBag.MaLSP})" class="">@i</a></li>*@
+                                                <li class="paginate_button page-item "><a href="@Url.Action("ChoXacNhan","Admin",new { Page = i })" aria-controls="dataTable" data-dt-idx="@i" tabindex="0" class="page-link">@i</a></li>
+                                            }
+                                        }
+                                        <li class="paginate_button page-item "><a href="@Url.Action("ChoXacNhan","Admin",new { Page = Model.PageNumber + 1 })" aria-controls="dataTable" data-dt-idx="@*@i*@" tabindex="0" class="page-link">>></a></li>
+                                    }
+
                                     @*<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                        <li class="paginate_button page-item ">
-                                            <a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                                        </li>
-                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>*@
+        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+        <li class="paginate_button page-item ">
+            <a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a>
+        </li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>*@
                                     @*<li class="paginate_button page-item next" id="dataTable_next">
-                                            <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                                        </li>*@
+            <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+        </li>*@
                                 </ul>
                             </div>
                         </div>
